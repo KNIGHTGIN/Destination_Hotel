@@ -30,7 +30,8 @@
 ホテル選び、旅行先選び、次回の宿泊先候補決め
 
 ## 設計書
-未作成
+・WBS:
+https://docs.google.com/spreadsheets/d/1CXqJxxKMG6LL66oOdxn-Tdmyahz_l2ON5EvFfhXJkfk/edit#gid=1773513600
 
 ## 開発環境
 - OS：Linux(CentOS)
