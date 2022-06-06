@@ -32,6 +32,8 @@
 ## 設計書
 ・WBS:
 https://docs.google.com/spreadsheets/d/1CXqJxxKMG6LL66oOdxn-Tdmyahz_l2ON5EvFfhXJkfk/edit#gid=1773513600
+・ER図:
+https://drive.google.com/file/d/18fMyJuZrpDym5tg0A304XBzofLIbrkxz/view?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
