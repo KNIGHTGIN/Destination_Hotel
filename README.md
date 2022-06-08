@@ -36,6 +36,9 @@ https://docs.google.com/spreadsheets/d/1CXqJxxKMG6LL66oOdxn-Tdmyahz_l2ON5EvFfhXJ
 ・ER図:
 https://drive.google.com/file/d/18fMyJuZrpDym5tg0A304XBzofLIbrkxz/view?usp=sharing
 
+・テーブル定義書
+https://docs.google.com/spreadsheets/d/1cSNk5PE2ooDyL0kM_Wjjqnmls9PkTFtW6YSD2oKMo8o/edit#gid=247767944
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
