@@ -39,6 +39,9 @@ https://drive.google.com/file/d/18fMyJuZrpDym5tg0A304XBzofLIbrkxz/view?usp=shari
 ・テーブル定義書
 https://docs.google.com/spreadsheets/d/1cSNk5PE2ooDyL0kM_Wjjqnmls9PkTFtW6YSD2oKMo8o/edit#gid=247767944
 
+・アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/1NE17jO2ysA96cMMIyUUZr5Sm8V9rpEZcbeidy84JvHU/edit#gid=2133469642
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
