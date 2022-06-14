@@ -1,0 +1,12 @@
+<h1>ユーザー情報編集</h1>
+
+<%= form_with model:@user,url: users_my_page_path, method: :patch do |f| %>
+
+  <table>
+    <%= render "public/users/user-info", f: f %>
+  </table>
+
+  <%= f.submit "編集内容を保存" %>
+<% end %>
+
+<%= link_to "退会する", users_unsubscribe_path %>
