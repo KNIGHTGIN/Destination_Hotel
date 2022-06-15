@@ -13,9 +13,12 @@ Rails.application.routes.draw do
   get "about" => 'public/homes#about'
 
   scope module: :public do
-    resources :users, only:[:show, :edit, :update, :unsubscribe, :withhdraw] do
+    get "users/my_page" => "users#show"
+    get "users/unsubscribe" => "users#unsubscribe"
+    get "users/my_page/edit" => "users#edit"
+    patch "users/withdraw" => "users#withdraw"
+    patch "users/my_page" => "users#update"
       resources :follows, only:[:create, :destroy]
-    end
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :likes, only:[:create, :destroy]
       resources :comments, only:[:create, :destroy]
