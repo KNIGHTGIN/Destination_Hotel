@@ -1,0 +1,16 @@
+<h1>投稿詳細</h1>
+
+<label>ホテル名</label>
+<p><%= @post.hotel_name %></p>
+
+<label>本文</label>
+<p><%= @post.text %></p>
+
+<label>投稿画像</label>
+<% @post.post_images.each do |post_image| %>
+  <%= attachment_image_tag post_image, :image, size: "130x130" %>
+<% end %>
+
+<%= link_to edit_post_path(@post), class: "btn btn-block bgleft " do %>
+<span><i class="fas fa-cog"></i> 編集する</span>
+<% end %>

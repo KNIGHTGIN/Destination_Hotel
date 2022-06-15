@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_15_042105) do
+ActiveRecord::Schema.define(version: 2022_06_15_075604) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,9 +39,21 @@ ActiveRecord::Schema.define(version: 2022_06_15_042105) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "post_images", force: :cascade do |t|
+    t.integer "post_id"
+    t.string "image_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "tag_id"
+    t.string "hotel_name"
+    t.text "text"
+    t.integer "likes_count"
   end
 
   create_table "tags", force: :cascade do |t|
