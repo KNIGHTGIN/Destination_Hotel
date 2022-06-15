@@ -11,9 +11,9 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(member_params)
+    if @user.update(user_params)
       flash[:notice] = "会員情報を更新しました"
-      redirect_to members_my_page_path
+      redirect_to users_my_page_path
     else
       render :edit
     end
@@ -23,10 +23,14 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
+    current_user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
   end
 
   private
-  def member_params
+  def user_params
     params.require(:user).permit(:name, :email, :is_deleted)
   end
 
