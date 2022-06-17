@@ -3,7 +3,9 @@ class Post < ApplicationRecord
   accepts_attachments_for :post_images, attachment: :image
   has_many :post_tags,dependent: :destroy
   has_many :tags,through: :post_tags
-
+　belongs_to :user
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :use
 
   def save_tag(post_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
@@ -24,4 +26,5 @@ class Post < ApplicationRecord
       self.tags << add_tag
    end
   end
+
 end

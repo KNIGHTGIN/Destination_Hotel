@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show, :create]
   layout 'public/application'
 
   def index
@@ -12,6 +12,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
+    @like = Like.new
   end
 
   def new
