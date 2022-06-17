@@ -13,6 +13,8 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @like = Like.new
+    @comments = @post.comments  #投稿詳細に関連付けてあるコメントを全取得
+    @comment = current_user.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
   end
 
   def new
@@ -67,7 +69,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, post_images_images: [])
+    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, :body, post_images_images: [])
   end
 
 end

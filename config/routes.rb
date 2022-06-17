@@ -23,9 +23,10 @@ Rails.application.routes.draw do
       resources :follows, only:[:create, :destroy]
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :likes, only:[:create, :destroy]
-      resources :comments, only:[:create, :destroy]
       resources :follows, only:[:create, :destroy]
+      resource :comments, only:[:create]
     end
+    resources :comments, only:[:destroy]
   end
 
   namespace :admin do

@@ -7,6 +7,7 @@ class Post < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :comments, dependent: :destroy
 
   def save_tag(post_tags)
   # タグが存在していれば、タグの名前を配列として全て取得

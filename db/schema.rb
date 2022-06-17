@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_080643) do
+ActiveRecord::Schema.define(version: 2022_06_17_142107) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 2022_06_17_080643) do
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "body"
+    t.integer "user_id"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -71,6 +76,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_080643) do
     t.text "text"
     t.integer "likes_count"
     t.string "name"
+    t.text "body"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -93,6 +99,8 @@ ActiveRecord::Schema.define(version: 2022_06_17_080643) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "post_tags", "posts"
