@@ -11,6 +11,10 @@
   <%= attachment_image_tag post_image, :image, size: "130x130" %>
 <% end %>
 
+
+<label>タグ</label>
+<% @post_tags.each do |tag| %>
+  <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
 <label>いいね件数: <%= @post.likes.count %></label>
 <% if current_user.already_liked?(@post) %>
   <%= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
@@ -25,3 +29,7 @@
 <%= link_to edit_post_path(@post), class: "btn btn-block bgleft " do %>
 <span><i class="fas fa-cog"></i> 編集する</span>
 <% end %>
+
+　<div>
+　  <%= link_to "投稿一覧に戻る", posts_path %>
+　</div>

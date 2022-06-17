@@ -11,6 +11,9 @@
 <h4>画像</h4>
 <%= f.attachment_field :post_images_images, multiple: true %>
 
+<h4>タグ</h4>
+<%= f.text_field :name,value: @tag_list,class:"form-control"%>
+
 <%= f.submit "編集する", class:"col-md-3 btn btn-success" %>
 <%= link_to "削除する", post_path(params[:id]), class:"col-md-3 btn btn-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %>
 

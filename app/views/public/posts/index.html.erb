@@ -1,5 +1,3 @@
-<h1>投稿一覧</h1>
-
 <% if @post.present? %>
 
     <div class="row mb-3">
@@ -17,8 +15,15 @@
           <% else %>
             <%= image_tag "no_image.jpg", size: "130x130" %>
           <% end %>
+          
+          <% @post_tags.each do |tag| %>
+  　　　　  　　　<%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+　　　　　　<% end %>
 
-         
+          <% @posts.each do |post| %>
+            <i class="fas fa-tag"><%= post.tags.map(&:name).join(', ') %></i>
+          <% end %>
+
         </div>
       </div>
     </div>
@@ -29,6 +34,12 @@
         <%= paginate @posts %>
       </div>
     </div>
+    
+    <h4>タグ一覧</h4>
+          <% @tag_list.each do |list|%>
+            <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+            <%="(#{list.posts.count})" %>
+          <% end %>
 
   <% else %>
   <div class="row mb-3">
