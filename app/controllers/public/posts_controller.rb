@@ -5,7 +5,7 @@ class Public::PostsController < ApplicationController
   def index
     @post = Post.last
     @posts = Post.page(params[:page]).per(10)
-    @tag_list = Tag.all
+    @tag_list=Tag.all
   end
 
   def show
@@ -56,6 +56,12 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿を削除できませんでした"
       redirect_to post_path
     end
+  end
+
+  def search_tag
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.page(params[:page]).per(10)
   end
 
   private

@@ -3,9 +3,9 @@ class Post < ApplicationRecord
   accepts_attachments_for :post_images, attachment: :image
   has_many :post_tags,dependent: :destroy
   has_many :tags,through: :post_tags
-end
 
-def save_tag(post_tags)
+
+  def save_tag(post_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     # 現在取得したタグから送られてきたタグを除いてoldtagとする
@@ -23,4 +23,5 @@ def save_tag(post_tags)
       add_tag = Tag.find_or_create_by(name: new_tag)
       self.tags << add_tag
    end
+  end
 end

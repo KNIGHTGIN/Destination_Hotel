@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get "about" => 'public/homes#about'
+  # タグの検索で使用する
+
 
   scope module: :public do
     get "users/my_page" => "users#show"
@@ -32,4 +34,6 @@ Rails.application.routes.draw do
     resources :users, only:[:index, :show, :edit, :update]
   end
 
+# タグの検索で使用する
+  get "search_tag" => "public/posts#search_tag"
 end
