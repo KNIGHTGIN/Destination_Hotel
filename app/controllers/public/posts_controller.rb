@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show, :create]
   layout 'public/application'
 
   def index
@@ -9,6 +9,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @like = Like.new
   end
 
   def new
@@ -17,13 +18,13 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new
+    @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "投稿を保存しました"
       redirect_to post_path(@post)
     else
-      @tags = Tag.all
-      render :new
+      render:new
     end
   end
 
