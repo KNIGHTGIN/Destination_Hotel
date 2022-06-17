@@ -1,0 +1,10 @@
+<% if post.user == current_user %>
+  <span class="btn btn-primary">いいね♥<%= @post.likes.count %></span>
+<% else %>
+  <% if post.liked_by(current_user, post) %>
+    <%= link_to "いいね♥#{post.likes.count}", post_likes_path(post), method: :delete, remote: true, class:"btn btn-primary" %>
+  <% else %>
+    <%= link_to "いいね♡#{post.likes.count}", post_likes_path(post), method: :post, remote: true, class:"btn btn-primary" %>
+  <% end %>
+  <!--Ajax, likes.count <= likes_count(counter_cache on articles table)-->
+<% end %>
