@@ -1,11 +1,12 @@
 class Post < ApplicationRecord
+  belongs_to :user
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
   has_many :post_tags,dependent: :destroy
   has_many :tags,through: :post_tags
-　belongs_to :user
+
   has_many :likes, dependent: :destroy
-  has_many :liked_users, through: :likes, source: :use
+  has_many :liked_users, through: :likes, source: :user
 
   def save_tag(post_tags)
   # タグが存在していれば、タグの名前を配列として全て取得

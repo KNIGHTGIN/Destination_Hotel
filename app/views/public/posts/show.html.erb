@@ -15,6 +15,7 @@
 <label>タグ</label>
 <% @post_tags.each do |tag| %>
   <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+<% end %>
 <label>いいね件数: <%= @post.likes.count %></label>
 <% if current_user.already_liked?(@post) %>
   <%= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
