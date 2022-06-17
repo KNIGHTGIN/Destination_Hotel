@@ -11,6 +11,11 @@
   <%= attachment_image_tag post_image, :image, size: "130x130" %>
 <% end %>
 
+<label>タグ</label>
+<% @post_tags.each do |tag| %>
+  <%=tag.name%><%="(#{tag.posts.count})" %>
+<% end %>
+
 <%= link_to edit_post_path(@post), class: "btn btn-block bgleft " do %>
 <span><i class="fas fa-cog"></i> 編集する</span>
 <% end %>
