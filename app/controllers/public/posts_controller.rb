@@ -6,6 +6,7 @@ class Public::PostsController < ApplicationController
     @post = Post.last
     @posts = Post.page(params[:page]).per(10)
     @tag_list=Tag.all
+    @post_tags = @post.tags
   end
 
   def show
@@ -15,7 +16,6 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @tags = Tag.all
   end
 
   def create
