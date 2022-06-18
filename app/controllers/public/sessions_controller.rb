@@ -3,6 +3,12 @@
 class Public::SessionsController < Devise::SessionsController
   layout 'public/application'
   before_action :reject_user, only: [:create]
+
+  def new_guest
+    user = User.guest
+    sign_in user   # ユーザーをログインさせる
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -21,7 +27,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   protected
-   
+
     def reject_user
       @user = User.find_by(email: params[:user][:email])
       if @user
@@ -33,7 +39,6 @@ class Public::SessionsController < Devise::SessionsController
         end
       end
     end
-       
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
