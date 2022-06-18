@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get "about" => 'public/homes#about'
-  # タグの検索で使用する
+  devise_scope :user do
+    post '/users/guest_session', to: 'public/sessions#new_guest'
+  end
 
 
   scope module: :public do
@@ -37,4 +39,6 @@ Rails.application.routes.draw do
 
 # タグの検索で使用する
   get "search_tag" => "public/posts#search_tag"
+
+
 end

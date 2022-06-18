@@ -20,7 +20,10 @@
 
   <div class="actions">
     <%= f.submit "ログイン" %>
+    <%= link_to "ゲストログイン", users_guest_session_path, method: :post, class:"col-md-2 offset-md-1 btn btn-secondary" %>
   </div>
+
+
 <% end %>
 
 <%= render "public/shared/links" %>
