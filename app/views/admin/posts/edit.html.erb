@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col p-0 alert alert-warning p-0 border-0">
+      <% if @post.errors.any? %>
+        <%= @post.errors.size %>件のエラーが発生しました
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <h4>投稿編集</h4>
+    </div>
+  </div>
+
+  <%= form_with(model: @post, url: admin_post_path(params[:id])) do |f|  %>
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <h5>ホテル名</h5>
+      </div>
+      <div class="col">
+        <%= f.text_field :hotel_name, autofocus: true, placeholder: "ホテル名", class:"col-md-5 form-control" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <h5>本文</h5>
+      </div>
+      <div class="col">
+        <%= f.text_area :text, rows: 15, placeholder: "投稿の本文。改行できます。", class:"col-md-8 form-control" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <h5>画像アップロード（複数選択可）</h5>
+      </div>
+      <div class="col">
+        <%= f.attachment_field :post_images_images, multiple: true %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-8 mx-auto">
+        <%= f.submit "編集する", class:"col-md-3 btn btn-success" %>
+        <%= link_to "削除する", admin_post_path(params[:id]), class:"col-md-3 btn btn-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

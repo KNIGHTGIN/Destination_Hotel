@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col">
+      <h4><%= @post.hotel_name %></h4>
+    </div>
+      <div class="col-2 ml-auto">
+        <%= link_to "編集する", edit_admin_post_path(@post.id), class:"btn btn-primary py-0" %>
+      </div>
+  </div>
+  <!--slideshow skippr-->
+  <div class="row mb-3">
+    <div class="col-md-8 p-0 mx-auto text-center d-flex align-items-end">
+      <div class="slideshow">
+        <% if @post.post_images.present? %>
+          <% @post.post_images.each do |img| %>
+            <%= attachment_image_tag img, :image %>
+          <% end %>
+        <% else %>
+          <%= image_tag "smart-home_640.jpg", size: "130x130" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!--article text content-->
+  <div class="row mb-3">
+    <div class="col-md-9 p-0 mx-auto">
+      <%= simple_format(h(@post.content)) %>
+    </div>
+  </div>
+  <!--Likes-->
+  <div class="row mb-3 ">
+    <div class="col-md-9 px-0 mx-auto">
+      <span class="btn btn-primary">いいね♥<%= @post.likes.count %></span>
+    </div>
+  </div>
+  <!--Comment list-->
+  <% @post.comments.each do |comment| %>
+    <div class="row mb-3">
+      <div class="col-md-9 px-0 mx-auto">
+        <%= comment.user.name %>
+        <%= comment.text %>
+      </div>
+    </div>
+  <% end %>
+</div>

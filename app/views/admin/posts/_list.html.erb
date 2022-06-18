@@ -1,0 +1,38 @@
+<% posts.each do |post| %>
+  <div class="row mb-3 d-flex align-items-center">
+    <div class="col-md-2 offset-md-1">
+      <%= link_to admin_post_path(post.id) do %>
+        <% if post.post_images.first %>
+          <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "130x130" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", size: "130x130" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col offset-md-1">
+          <%= link_to post.hotel_name, admin_post_path(post.id), class:"h4" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col offset-md-1">
+          <%= post.name %>
+          | <%= post.updated_at.strftime('%Y/%m/%d') %>
+          | いいね: <%= post.likes_count %>件
+          | コメント: <%= post.comments.size %>件
+        </div>
+      </div>
+    </div>
+    <div clas="col">
+      <%= link_to "編集する", edit_admin_post_path(post.id), class:"btn btn-primary" %>
+      <%= link_to "削除する", admin_post_path(post.id), method: :delete, class:"btn btn-danger", data: { confirm: '本当に削除しますか？' } %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-3 mx-auto">
+    <%= paginate posts %>
+  </div>
+</div>
