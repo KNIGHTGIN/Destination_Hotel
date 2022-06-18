@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/followings'
+  get 'relationships/followers'
   #管理者
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
@@ -22,13 +24,16 @@ Rails.application.routes.draw do
     get "users/my_page/edit" => "users#edit"
     patch "users/withdraw" => "users#withdraw"
     patch "users/my_page" => "users#update"
-      resources :follows, only:[:create, :destroy]
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :likes, only:[:create, :destroy]
-      resources :follows, only:[:create, :destroy]
       resource :comments, only:[:create]
     end
     resources :comments, only:[:destroy]
+    resources :users, only:[:show, :destroy, :update] do
+      resources :relationships, only:[:create, :destroy]
+      get 'followings' => 'follows#followings', as: 'followings'
+      get 'followers' => 'follows#followers', as: 'followers'
+    end
   end
 
   namespace :admin do

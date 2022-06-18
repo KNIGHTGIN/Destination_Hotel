@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_142107) do
+ActiveRecord::Schema.define(version: 2022_06_18_195010) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 2022_06_17_142107) do
   create_table "follows", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.integer "follow_id", null: false
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.index ["follow_id"], name: "index_follows_on_follow_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -101,6 +107,8 @@ ActiveRecord::Schema.define(version: 2022_06_17_142107) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "follows", "follows"
+  add_foreign_key "follows", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "post_tags", "posts"
