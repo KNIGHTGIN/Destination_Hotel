@@ -42,6 +42,12 @@
   <p><%=link_to "削除", comment_path(comment.id), method: :delete %></p>
 <% end %>
 
+<% if current_user.following?(user) %>
+  <%= link_to "フォロー外す", user_follows_path(user.id), method: :delete %>
+<% else %>
+  <%= link_to "フォローする", user_follows_path(user.id), method: :post %>
+<% end %>
+
 <%= link_to edit_post_path(@post), class: "btn btn-block bgleft " do %>
 <span><i class="fas fa-cog"></i> 編集する</span>
 <% end %>
