@@ -1,7 +1,6 @@
 class Public::FollowsController < ApplicationController
   def create
-    @user = User.find(params[:user_id])
-    current_user.follow(@user.id)
+    current_user.follow(params[:user_id])
   end
 
   def destroy
