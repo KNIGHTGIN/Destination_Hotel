@@ -3,14 +3,16 @@
 <label>ホテル名</label>
 <p><%= @post.hotel_name %></p>
 
-<label>本文</label>
-<p><%= @post.text %></p>
-
 <label>投稿画像</label>
 <% @post.post_images.each do |post_image| %>
   <%= attachment_image_tag post_image, :image, size: "130x130" %>
 <% end %>
 
+<label>本文</label>
+<p><%= @post.text %></p>
+
+<label>投稿ユーザー</label>
+<p><%= @post.user.name %></p>
 
 <label>タグ</label>
 <% @post_tags.each do |tag| %>
@@ -18,6 +20,7 @@
 <% end %>
 
 <label>いいね件数: <%= @post.likes.count %></label>
+<lavel>コメント件数: <%= @post.comments.count %></lavel>
 <% if current_user.already_liked?(@post) %>
   <%= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
 <% else %>
@@ -38,8 +41,16 @@
 <% end %>
 
 <% @comments.each do |comment| %>
-  <p><span>コメント内容: </span><%= comment.body %></p>
-  <p><%=link_to "削除", comment_path(comment.id), method: :delete %></p>
+<tr>
+  <td><%= comment.user.name %></td>
+  <td><%= comment.body %></td>
+  <td>(<%= comment.created_at.strftime('%Y/%m/%d') %>)</td>
+  <td>
+    <% if comment.user == current_user %>
+      <%=link_to "削除", comment_path(comment.id), method: :delete %>
+    <% end %>
+  </td>
+</tr>
 <% end %>
 
 <%= link_to edit_post_path(@post), class: "btn btn-block bgleft " do %>

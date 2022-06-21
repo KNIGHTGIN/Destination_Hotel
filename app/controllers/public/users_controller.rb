@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
   layout 'public/application'
 
   def show
+    @user = User.where(id: current_user.id).eager_load(:posts, :likes)
   end
 
   def edit

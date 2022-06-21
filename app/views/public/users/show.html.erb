@@ -1,5 +1,7 @@
 <h1>マイページ</h1>
 
+<%= render "public/users/user_details" %>
+
 　<div>
 　  <h2>登録情報</h2>
 　  <%= link_to "編集する", users_my_page_edit_path %>
@@ -16,19 +18,15 @@
 　  </table>
 　</div>
 
-　<% if current_user.following?(@user) %>
-  <%= link_to "フォロー外す", follows_path(user.id), method: :delete %>
-  <% else %>
-  <%= link_to "フォローする", follows_path(current_user.id), method: :post  %>
-  <% end %>
-
+　<div>
+　  <h2>新規投稿</h2>
+　  <%= link_to "投稿する", new_post_path %>
+　</div>
 
 　<div>
 　  <h2>投稿一覧</h2>
 　  <%= link_to "一覧を見る", posts_path %>
 　</div>
+<li>
 
-　<div>
-　  <h2>いいね一覧</h2>
-　  <%= link_to "一覧を見る" %>
-　</div>
+</li>

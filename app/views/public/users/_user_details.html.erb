@@ -1,0 +1,25 @@
+<% @user.each do |user| %>
+
+<ul>
+  <li>
+    投稿数:<%= current_user.posts.count %>件
+  </li>
+  <li>
+    いいね数:<%= current_user.likes.count %>件
+  </li>
+  <li>
+    コメント数:<%= current_user.comments.count %>件
+  </li>
+  <li>
+    <%= link_to follows_path(user.id) do %>
+      フォロー <%= user.followings.count %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to follows_path(user.id) do %>
+      フォロワー <%= user.followers.count %>
+    <% end %>
+  </li>
+<ul>
+
+<% end %>
