@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-
+  root 'public/homes#top'
   root to: "public/homes#top"
   get "about" => 'public/homes#about'
   devise_scope :user do
