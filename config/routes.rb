@@ -20,12 +20,12 @@ Rails.application.routes.draw do
     get "users/my_page" => "users#show"
     get "users/unsubscribe" => "users#unsubscribe"
     get "users/my_page/edit" => "users#edit"
+    get "users/index" => "users#index"
     patch "users/withdraw" => "users#withdraw"
     patch "users/my_page" => "users#update"
       resources :follows, only:[:create, :destroy]
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :likes, only:[:create, :destroy]
-      resources :follows, only:[:create, :destroy]
       resource :comments, only:[:create]
     end
     resources :comments, only:[:destroy]
