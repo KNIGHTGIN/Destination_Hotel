@@ -11,12 +11,12 @@
     コメント数:<%= current_user.comments.count %>件
   </li>
   <li>
-    <%= link_to follows_path(user.id) do %>
+    <%= link_to user_followings_path(user_id: user.id) do %>
       フォロー <%= user.followings.count %>
     <% end %>
   </li>
   <li>
-    <%= link_to follows_path(user.id) do %>
+    <%= link_to user_followers_path(user.id) do %>
       フォロワー <%= user.followers.count %>
     <% end %>
   </li>
