@@ -25,15 +25,14 @@ Rails.application.routes.draw do
       resources :follows, only:[:create, :destroy]
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :likes, only:[:create, :destroy]
-      resources :follows, only:[:create, :destroy]
       resource :comments, only:[:create]
     end
     resources :comments, only:[:destroy]
   end
 
   namespace :admin do
-    resources :posts, only:[:index, :new, :create, :show, :edit, :update]
-    resources :tags, only:[:index, :create, :edit, :update]
+    resources :posts, only:[:index, :show, :edit, :update, :destroy]
+    resources :tags, only:[:index, :destroy]
     resources :users, only:[:index, :show, :edit, :update]
   end
 

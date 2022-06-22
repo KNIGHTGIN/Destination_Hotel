@@ -1,7 +1,7 @@
-<% @posts.each do |post| %>
+<% posts.each do |post| %>
   <div class="row mb-3 d-flex align-items-center">
     <div class="col-md-2 offset-md-1">
-      <%= link_to post_path(post.id) do %>
+      <%= link_to admin_post_path(post.id) do %>
         <% if post.post_images.first %>
           <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "130x130" %>
         <% else %>
@@ -15,35 +15,23 @@
          ホテル名:<%= link_to post.hotel_name, admin_post_path(post.id), class:"h4" %>
         </div>
         <div class="col offset-md-1">
-         投稿者: <%= link_to post.user.name, users_my_page_path(post.id), class:"h4" %>
+         投稿者: <%= link_to post.user.name, admin_user_path(post.id), class:"h4" %>
         </div>
       </div>
-        <div class="row">
+      <div class="row">
         <div class="col offset-md-1">
-          <i class="fas fa-tag">タグ:<%= post.tags.map(&:name).join(', ') %></i>
-          | 投稿日: <%= post.updated_at.strftime('%Y/%m/%d') %>
+          <% @post_tags.each do |tag| %>
+            <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+          <% end %>
+          | 投稿<%= post.updated_at.strftime('%Y/%m/%d') %>
           | いいね: <%= post.likes.count %>件
           | コメント: <%= post.comments.size %>件
         </div>
       </div>
-        </div>
-      </div>
     </div>
-
-
-    <div class="row mb-3">
-      <div class="col-2 mx-auto">
-        <%= paginate @posts %>
-      </div>
+    <div clas="col">
+      <%= link_to "編集する", edit_admin_post_path(post.id), class:"btn btn-primary" %>
+      <%= link_to "削除する", admin_post_path(post.id), method: :delete, class:"btn btn-danger", data: { confirm: '本当に削除しますか？' } %>
     </div>
-
-
+  </div>
 <% end %>
-
-<h4>タグ一覧</h4>
-  <% @tag_list.each do |list|%>
-    <%=link_to list.name,search_tag_path(tag_id: list.id) %>
-    <%="(#{list.posts.count})" %>
-  <% end %>
-
- 

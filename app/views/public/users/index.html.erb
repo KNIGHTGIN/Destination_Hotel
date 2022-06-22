@@ -1,0 +1,19 @@
+
+<tr>
+  <th>ユーザー名</th>
+  <td><%= @user.name %></td>
+</tr>
+<tr>
+  <th>投稿数</th>
+  <td><%= @user.posts.count %>件</td>
+</tr>
+<tr>
+  <th>いいね数</th>
+  <td><%= @user.likes.count %>件</td>
+</tr>
+<tr>
+  <th>コメント数</th>
+  <td><%= @user.comments.count %>件</td>
+</tr>
+
+<%= render "public/follows/follow_button" %>

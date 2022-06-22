@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
   layout 'public/application'
 
   def show
+    @user = User.where(id: current_user.id).eager_load(:posts, :likes)
   end
 
   def edit
@@ -31,7 +32,7 @@ class Public::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :is_deleted)
+    params.require(:user).permit(:name, :email, :posts, :likes, :comments, :is_deleted)
   end
 
 end

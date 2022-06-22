@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col">
+      <h4>投稿一覧（全<%= @posts.total_count %>件）</h4>
+    </div>
+  </div>
+
+  <%= render partial:"list", locals: {posts: @posts} %>
+  
+  <div class="row mb-3">
+    <div class="col-2 mx-auto">
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>
