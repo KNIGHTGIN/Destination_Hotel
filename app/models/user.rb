@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
  # フォローしたときの処理
   def follow(user_id)
+    #byebug
     follows.create(followed_id: user_id)
   end
   # フォローを外すときの処理
@@ -35,7 +36,7 @@ class User < ApplicationRecord
     follows.find_by(followed_id: user_id).destroy
   end
   # フォローしているか判定
-  def following?(user)
+  def followings?(user)
     followings.include?(user)
   end
 

@@ -17,12 +17,16 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-    get "users/my_page" => "users#show"
+    get "users/my_page" => "users#my_page"
     get "users/unsubscribe" => "users#unsubscribe"
     get "users/my_page/edit" => "users#edit"
     patch "users/withdraw" => "users#withdraw"
     patch "users/my_page" => "users#update"
+    resources :users, only:[:show] do
       resources :follows, only:[:create, :destroy]
+      get 'followings' => 'follows#following', as: 'followings'
+      get 'followers' => 'follows#followers', as: 'followers'
+    end
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :likes, only:[:create, :destroy]
       resource :comments, only:[:create]

@@ -12,10 +12,10 @@
     <div class="col">
       <div class="row">
         <div class="col offset-md-1">
-         ホテル名:<%= link_to post.hotel_name, admin_post_path(post.id), class:"h4" %>
+         ホテル名:<%= link_to post.hotel_name, post_path(post.id), class:"h4" %>
         </div>
         <div class="col offset-md-1">
-         投稿者: <%= link_to post.user.name, users_my_page_path(post.id), class:"h4" %>
+         投稿者: <%= link_to post.user.name, user_path(post.user.id), class:"h4" %>
         </div>
       </div>
         <div class="row">
@@ -46,4 +46,7 @@
     <%="(#{list.posts.count})" %>
   <% end %>
 
- 
+<div>
+　  <h2>新規投稿</h2>
+　  <%= link_to "投稿する", new_post_path %>
+</div>
