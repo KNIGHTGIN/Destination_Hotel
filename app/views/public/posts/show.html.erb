@@ -12,7 +12,7 @@
 <p><%= @post.text %></p>
 
 <label>投稿ユーザー</label>
-<p><%= @post.user.name %></p>
+<p><%= link_to @post.user.name,users_index_path %></p>
 
 <label>タグ</label>
 <% @post_tags.each do |tag| %>

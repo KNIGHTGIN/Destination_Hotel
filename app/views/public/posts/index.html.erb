@@ -41,6 +41,11 @@
             <%="(#{list.posts.count})" %>
           <% end %>
 
+    <div>
+　  <h2>新規投稿</h2>
+　  <%= link_to "投稿する", new_post_path %>
+　  </div>
+
   <% else %>
   <div class="row mb-3">
     <div class="col">

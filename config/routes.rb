@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get "users/my_page" => "users#show"
     get "users/unsubscribe" => "users#unsubscribe"
     get "users/my_page/edit" => "users#edit"
+    get "users/index" => "users#index"
     patch "users/withdraw" => "users#withdraw"
     patch "users/my_page" => "users#update"
       resources :follows, only:[:create, :destroy]

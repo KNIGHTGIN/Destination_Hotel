@@ -2,6 +2,11 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   layout 'public/application'
 
+  def index
+    @user = User.find(params[:id])
+    @post = Post.find(params[:id])
+  end
+
   def show
     @user = User.where(id: current_user.id).eager_load(:posts, :likes)
   end
