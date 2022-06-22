@@ -1,18 +1,18 @@
 <h1>投稿詳細</h1>
 
-<label>ホテル名</label>
-<p><%= @post.hotel_name %></p>
-
 <label>投稿画像</label>
 <% @post.post_images.each do |post_image| %>
   <%= attachment_image_tag post_image, :image, size: "130x130" %>
 <% end %>
 
+<label>ホテル名</label>
+<p><%= @post.hotel_name %></p>
+
 <label>本文</label>
 <p><%= @post.text %></p>
 
 <label>投稿ユーザー</label>
-<p><%= link_to @post.user.name,users_index_path %></p>
+<p><%= link_to @post.user.name,users_my_page_path %></p>
 
 <label>タグ</label>
 <% @post_tags.each do |tag| %>
@@ -53,8 +53,10 @@
 </tr>
 <% end %>
 
-<%= link_to edit_post_path(@post), class: "btn btn-block bgleft " do %>
+<% if @post.user == current_user %>
+<%= link_to  edit_post_path(@post), class: "btn btn-block bgleft " do %>
 <span><i class="fas fa-cog"></i> 編集する</span>
+<% end %>
 <% end %>
 
 　<div>

@@ -1,29 +1,31 @@
-<% if @post.present? %>
-
-    <div class="row mb-3">
-      <div class="col-8 p-0 mx-auto text-center">
-        <div class="slideshow shadow">
-          <div class="main-visual-content text-light">
-            <h4>
-            <%= link_to @post.hotel_name, post_path(@post.id) %>
-            </h4>
-          </div>
-          <% if @post.post_images.present? %>
-            <% @post.post_images.each do |img| %>
-              <%= attachment_image_tag img, :image, size: "130x130" %>
-            <% end %>
-          <% else %>
-            <%= image_tag "no_image.jpg", size: "130x130" %>
-          <% end %>
-
-          <% @post_tags.each do |tag| %>
-  　　　　  　　　<%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
-　　　　　<% end %>
-
-          <% @posts.each do |post| %>
-            <i class="fas fa-tag"><%= post.tags.map(&:name).join(', ') %></i>
-          <% end %>
-
+<% @posts.each do |post| %>
+  <div class="row mb-3 d-flex align-items-center">
+    <div class="col-md-2 offset-md-1">
+      <%= link_to post_path(post.id) do %>
+        <% if post.post_images.first %>
+          <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "130x130" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", size: "130x130" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col offset-md-1">
+         ホテル名:<%= link_to post.hotel_name, admin_post_path(post.id), class:"h4" %>
+        </div>
+        <div class="col offset-md-1">
+         投稿者: <%= link_to post.user.name, users_my_page_path(post.id), class:"h4" %>
+        </div>
+      </div>
+        <div class="row">
+        <div class="col offset-md-1">
+          <i class="fas fa-tag">タグ:<%= post.tags.map(&:name).join(', ') %></i>
+          | 投稿日: <%= post.updated_at.strftime('%Y/%m/%d') %>
+          | いいね: <%= post.likes.count %>件
+          | コメント: <%= post.comments.size %>件
+        </div>
+      </div>
         </div>
       </div>
     </div>
@@ -35,22 +37,13 @@
       </div>
     </div>
 
-    <h4>タグ一覧</h4>
-          <% @tag_list.each do |list|%>
-            <%=link_to list.name,search_tag_path(tag_id: list.id) %>
-            <%="(#{list.posts.count})" %>
-          <% end %>
 
-    <div>
-　  <h2>新規投稿</h2>
-　  <%= link_to "投稿する", new_post_path %>
-　  </div>
+<% end %>
 
-  <% else %>
-  <div class="row mb-3">
-    <div class="col">
-      <h5>投稿はありません</h5>
-    </div>
-  </div>
-
+<h4>タグ一覧</h4>
+  <% @tag_list.each do |list|%>
+    <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+    <%="(#{list.posts.count})" %>
   <% end %>
+
+ 
