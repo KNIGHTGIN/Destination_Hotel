@@ -6,9 +6,9 @@
 <%= f.text_field :hotel_name, autofocus: true, placeholder: "ホテル名", class:"form-control" %>
 
 <h4>本文</h4>
-<%= f.text_area :text, autofocus: true,　placeholder: "本文", class: "form-control" %>
+<%= f.text_area :text, rows: 5, autofocus: true,　placeholder: "本文", class: "form-control" %>
 
-<h4>画像</h4>
+<h4>画像（複数選択可）</h4>
 <%= f.attachment_field :post_images_images, multiple: true %>
 
 <h4>タグ</h4>

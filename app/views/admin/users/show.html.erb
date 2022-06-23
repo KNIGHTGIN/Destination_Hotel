@@ -1,0 +1,47 @@
+<h2><%= @user.name %>さんの詳細</h2>
+
+        <tr>
+          <th>ユーザー名</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>投稿数</th>
+          <td><%= @user.posts.count %>件</td>
+        </tr>
+        <tr>
+          <th>いいね数</th>
+          <td><%= @user.likes.count %>件</td>
+        </tr>
+        <tr>
+          <th>コメント数</th>
+          <td><%= @user.comments.count %>件</td>
+        </tr>
+        <tr>
+          <th>ステータス</th>
+          <td>
+            <% if @user.is_deleted == false %>
+              <strong class="text-success">有効</strong>
+              <% elsif @user.is_deleted == true %>
+              <strong class="text-danger">退会</strong>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>
+            <%= link_to edit_admin_user_path(@user), class: "btn bgleft mr-5" do %>
+              <span>
+                <i class="fas fa-cog"></i> 編集する
+              </span>
+            <% end %>
+            <%= link_to admin_posts_path, class: "btn bgleft" do %>
+              <span>
+                <i class="far fa-eye"></i> 投稿一覧
+              </span>
+            <% end %>
+          </td>
+        </tr>

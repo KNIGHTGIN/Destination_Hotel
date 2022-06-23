@@ -1,0 +1,30 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h2>Follow Users</h2>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th colspan='3'></th>
+          </tr>
+        </thead>
+        <% @followers.each do |follow| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= follow.name %>
+              </td>
+              <td>
+                <p>フォロー数：<%= follow.followings.count %></p>
+              </td>
+              <td>
+                <p>フォロワー数：<%= follow.followers.count %></p>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

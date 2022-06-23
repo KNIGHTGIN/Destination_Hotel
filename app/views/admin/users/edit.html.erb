@@ -1,0 +1,19 @@
+<h1><%= @user.name %>のユーザー情報編集</h1>
+
+<%= form_with model:@user,url: admin_user_path(@user.id), method: :patch do |f| %>
+
+  <table>
+    <%= render "public/users/user-info", f: f %>
+  </table>
+
+  <th>会員ステータス</th>
+  　　<td>
+      　　<%= f.radio_button :is_deleted, false %>
+          <%= f.label :is_deleted, "有効", value: false %>
+          <%= f.radio_button :is_deleted, true %>
+          <%= f.label :is_deleted, "退会", value: true %>
+      </td>
+
+  <%= f.submit "編集内容を保存" %>
+
+<% end %>
