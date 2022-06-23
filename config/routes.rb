@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
 # タグの検索で使用する
   get "search_tag" => "public/posts#search_tag"
+  get "search" => "public/searches#search_result"
 
 
 end
