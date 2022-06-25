@@ -6,13 +6,14 @@ Rails.application.routes.draw do
   #会員
   devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
-  sessions: 'public/sessions'
+  sessions: 'public/sessions',
+  passwords: 'public/users/passwords'
 }
 
   root to: "public/homes#top"
   get "about" => 'public/homes#about'
   devise_scope :user do
-    post '/users/guest_session', to: 'public/sessions#new_guest'
+    post '/users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
 
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root to: 'posts#index'
     resources :posts, only:[:index, :show, :edit, :update, :destroy]
     resources :tags, only:[:index, :destroy]
     resources :users, only:[:index, :show, :edit, :update]

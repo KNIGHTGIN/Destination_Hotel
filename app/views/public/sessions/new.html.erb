@@ -1,29 +1,81 @@
-<h2>ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-2 ">
+      <div class="mt-5" >
+        <h5 class = "w-auto p-2 text-center" style="background-color: #eee;"><strong>ログイン</strong></h5>
+      </div>
     </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-3 offset-1">
+      <h6 class = "w-auto p-1 mt-4 text-center" style="background-color: #eee;"><strong>会員の方はこちらからログイン</strong></h6>
+    </div>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "layouts/error", obj: resource %>
+
+  <div class = "row form-group mt-5">
+    <label class = "col-2 offset-2 ">メールアドレス</label>
+    <div class="col-5 ">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class = "row form-group">
+    <label class = "col-2 offset-2 ">パスワード</label>
+    <div class="col-5 ">
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col offset-4 mt-5 ">
+      <div class="actions">
+        <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
+          <span>
+            <i class="fas fa-sign-in-alt"></i> ログイン
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-    <%= link_to "ゲストログイン", users_guest_session_path, method: :post, class:"col-md-2 offset-md-1 btn btn-secondary" %>
+  <div class = "row">
+    <div class = "col-3 offset-1 mt-5 text-center">
+      <h6 class="w-auto p-1 mt-3" style="background-color: #eee;"><strong>ユーザー登録をせずご利用の方</strong></h6>
+    </div>
   </div>
 
+  <div class = "row">
+    <div class = "col-5 offset-2 ">
+      <p class = "ml-5 mt-3">
+        <%= link_to users_guest_sign_in_path, method: :post, class: "badge badge-primary shadow-sm" do %>
+          <span>ゲストログイン</span>
+        <% end %>
+        にてご利用ください。
+      </p>
+    </div>
+  </div>
 
-<% end %>
+  <div class = "row">
+    <div class = "col-3 offset-1 mt-5 text-center">
+      <h6 class="w-auto p-1 mt-3" style="background-color: #eee;"><strong>会員登録がお済みでない方</strong></h6>
+    </div>
+  </div>
 
-<%= render "public/shared/links" %>
+  <div class = "row">
+    <div class = "col-5 offset-2 ">
+      <p class = "ml-5 mt-3">
+        <%= link_to new_user_registration_path, class: "badge badge-primary shadow-sm" do %>
+          <span>こちら</span>
+        <% end %>
+        から新規登録を行なってください。
+      </p>
+    </div>
+  </div>
+
+</div>

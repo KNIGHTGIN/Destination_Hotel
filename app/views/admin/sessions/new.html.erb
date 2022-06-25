@@ -1,26 +1,40 @@
-<h2>管理者ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-5 ">
+      <div class="mt-5" >
+        <h2 class = "w-auto p-2 text-center">管理者ログイン</h2>
+      </div>
     </div>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "layouts/error", obj: resource %>
+    <div class = "row form-group mt-5">
+      <label class = "col-2 offset-2 ">メールアドレス</label>
+      <div class="col-5">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class = "row form-group">
+      <label class = "col-2 offset-2 ">パスワード</label>
+      <div class="col-5">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class = "row">
+      <div class = "col offset-4 mt-4 ">
+        <%= button_tag(type: "submit", class: "btn bgleft shadow-sm") do %>
+          <span>
+            <i class="fas fa-sign-in-alt"></i> ログイン
+          </span>
+        <% end %>
+      </div>
+    </div>
+
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+  <%= render "admin/shared/links" %>
 
-<%= render "admin/shared/links" %>
+</div>

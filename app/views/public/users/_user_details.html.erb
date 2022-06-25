@@ -1,25 +1,34 @@
 <% @user.each do |user| %>
 
-<ul>
-  <li>
-    投稿数:<%= current_user.posts.count %>件
-  </li>
-  <li>
-    いいね数:<%= current_user.likes.count %>件
-  </li>
-  <li>
-    コメント数:<%= current_user.comments.count %>件
-  </li>
-  <li>
-    <%= link_to user_followings_path(user_id: user.id) do %>
-      フォロー <%= user.followings.count %>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to user_followers_path(user.id) do %>
-      フォロワー <%= user.followers.count %>
-    <% end %>
-  </li>
-<ul>
+  <table class="table table-bordered">
+    <tr>
+      <td class="table-secondary">投稿数:</td>
+      <td><%= current_user.posts.count %>件</td>
+    </tr>
+    <tr>
+      <td class="table-secondary">いいね数:</td>
+      <td><%= current_user.likes.count %>件</td>
+    </tr>
+    <tr>
+      <td class="table-secondary">コメント数:</td>
+      <td><%= current_user.comments.count %>件</td>
+    </tr>
+    <tr>
+      <td scope="col" style="width: 20%"><span class="font-weight-bold h6">フォロー:</span></td>
+      <td scope="col" style="width: 80%">
+        <%= link_to user_followings_path(user_id: user.id), class: "btn bgleft btn-sm pl-3 pr-3" do %>
+          <span><i class="fas fa-cog"></i> <%= user.followings.count %>人</span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td scope="col" style="width: 20%"><span class="font-weight-bold h6">フォロワー:</span></td>
+      <td scope="col" style="width: 80%">
+        <%= link_to user_followings_path(user_id: user.id), class: "btn bgleft btn-sm pl-3 pr-3" do %>
+          <span><i class="fas fa-cog"></i><%= user.followers.count %>人</span>
+        <% end %>
+      </td>
+    </tr>
+  </table>
 
 <% end %>

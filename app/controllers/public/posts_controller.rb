@@ -52,13 +52,12 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
-    if @post = Post.find(params[:id]).destroy
-      flash[:notice] = "投稿を削除しました"
-      redirect_to post_path
-    else
-      flash[:notice] = "投稿を削除できませんでした"
-      redirect_to post_path
-    end
+    post = Post.find(params[:id])
+    return unless post.user_id == current_user.id
+
+    post.destroy
+    flash[:notice] = "投稿を削除しました"
+    redirect_to users_my_page_path(current_user.id)
   end
 
   def search_tag

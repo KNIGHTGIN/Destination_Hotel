@@ -2,9 +2,8 @@
 
 class Public::SessionsController < Devise::SessionsController
   layout 'public/application'
-  before_action :reject_user, only: [:create]
 
-  def new_guest
+  def guest_sign_in
     user = User.guest
     sign_in user   # ユーザーをログインさせる
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
