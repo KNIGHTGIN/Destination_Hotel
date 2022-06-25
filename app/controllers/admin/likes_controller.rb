@@ -1,4 +1,5 @@
 class Admin::LikesController < ApplicationController
+  
 
   def create
   end

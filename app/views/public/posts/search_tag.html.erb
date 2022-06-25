@@ -29,3 +29,7 @@
   </div>
 
 </div>
+
+<% if admin_signed_in? %>
+    <%= link_to "タグ一覧に戻る", admin_tags_path %>
+<% end %>

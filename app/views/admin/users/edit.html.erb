@@ -1,19 +1,40 @@
-<h1><%= @user.name %>のユーザー情報編集</h1>
+<div class = "container">
+  <div class = "row my-5">
+    <div class = "col-5">
+      <h2 class = "w-auto h-75 p-2 text-center"><%= @user.name %>のユーザー情報編集</h2>
+    </div>
+  </div>
 
-<%= form_with model:@user,url: admin_user_path(@user.id), method: :patch do |f| %>
+  <%= form_with model:@user,url: admin_user_path(@user.id), method: :patch do |f| %>
+  <%= render "layouts/error", obj: @user %>
 
   <table>
     <%= render "public/users/user-info", f: f %>
   </table>
 
-  <th>会員ステータス</th>
-  　　<td>
-      　　<%= f.radio_button :is_deleted, false %>
-          <%= f.label :is_deleted, "有効", value: false %>
-          <%= f.radio_button :is_deleted, true %>
-          <%= f.label :is_deleted, "退会", value: true %>
-      </td>
+  <div class = "row ml-0">
+    <table class = "col-4">
+      <tr>
+        <th>会員ステータス</th>
+  　       <td>
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deleted, "有効", value: false %>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deleted, "退会", value: true %>
+          </td>
+        </tr>
+    </table>
+  </div>
 
-  <%= f.submit "編集内容を保存" %>
-
+  <div class = "row my-5  ml-0">
+    <div class = "col-4 offset-1 text-center">
+      <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
+        <span>
+          <i class="fas fa-save"></i>編集内容を保存
+        </span>
+      <% end %>
+    </div>
+  </div>
 <% end %>
+
+</div>

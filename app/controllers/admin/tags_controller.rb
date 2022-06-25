@@ -7,6 +7,7 @@ class Admin::TagsController < ApplicationController
   end
 
   def destroy
+  
     current_user.update(is_deleted: true)
     reset_session
     flash[:notice] = "削除しました"

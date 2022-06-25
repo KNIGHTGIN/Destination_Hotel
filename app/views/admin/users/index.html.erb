@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="row mb-3">
-    <div class="col-md-3">
-      <h4>メンバー一覧（全<%= @users.size %>件）</h4>
-    </div>
+  <div class="p-3 mb-2">
+    <h2 class="py-3 font-weight-bold">メンバー一覧（全<%= @users.size %>件）</h2>
+  
+    <%= render partial: "/admin/users/list", locals: {users: @users} %>
+    
   </div>
-<%= render partial: "/admin/users/list", locals: {users: @users} %>
 </div>

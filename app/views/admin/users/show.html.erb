@@ -1,35 +1,38 @@
-<h2><%= @user.name %>さんの詳細</h2>
+<div class="container">
 
-        <tr>
-          <th>ユーザー名</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td><%= @user.email %></td>
-        </tr>
-        <tr>
-          <th>投稿数</th>
-          <td><%= @user.posts.count %>件</td>
-        </tr>
-        <tr>
-          <th>いいね数</th>
-          <td><%= @user.likes.count %>件</td>
-        </tr>
-        <tr>
-          <th>コメント数</th>
-          <td><%= @user.comments.count %>件</td>
-        </tr>
-        <tr>
-          <th>ステータス</th>
-          <td>
-            <% if @user.is_deleted == false %>
-              <strong class="text-success">有効</strong>
-              <% elsif @user.is_deleted == true %>
-              <strong class="text-danger">退会</strong>
-            <% end %>
-          </td>
-        </tr>
+  <div class="row my-3 text-center">
+    <div class="col-lg-4 mt-3">
+      <h2><%= @user.name %>さんの詳細</h2>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <tr>
+      <td class="table-secondary">ユーザー名</td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td class="table-secondary">投稿数</td>
+      <td><%= @user.posts.count %>件</td>
+    </tr>
+    <tr>
+      <td class="table-secondary">いいね数</td>
+      <td><%= @user.likes.count %>件</td>
+    </tr>
+    <tr>
+      <td class="table-secondary">コメント数</td>
+      <td><%= @user.comments.count %>件</td>
+    </tr>
+    <tr>
+      <th>ステータス</th>
+      <td>
+        <% if @user.is_deleted == false %>
+          <strong class="text-success">有効</strong>
+        <% elsif @user.is_deleted == true %>
+          <strong class="text-danger">退会</strong>
+        <% end %>
+      </td>
+    </tr>
         <tr>
           <th></th>
           <td>
