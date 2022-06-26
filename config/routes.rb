@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'posts#index'
     resources :posts, only:[:index, :show, :edit, :update, :destroy]
-    resources :tags, only:[:index, :destroy]
+    resources :tags, only:[:index]
     resources :users, only:[:index, :show, :edit, :update]
   end
 
