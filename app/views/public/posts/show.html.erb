@@ -30,7 +30,7 @@
 
     <div class="row">
       <div class="col offset-md-1">
-        投稿ユーザー:<%= link_to @post.user.name,users_my_page_path, class:"h4" %>
+        投稿ユーザー:<%= link_to @post.user.name,user_path(@post.user.id), class:"h4" %>
       </div>
     </div>
 

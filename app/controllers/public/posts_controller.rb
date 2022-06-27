@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       @post.save_tag(tag_list)
       flash[:notice] = "投稿を保存しました"
-      redirect_to post_path(@post)
+      redirect_to posts_path
     else
       render:new
     end
@@ -57,7 +57,7 @@ class Public::PostsController < ApplicationController
 
     post.destroy
     flash[:notice] = "投稿を削除しました"
-    redirect_to users_my_page_path(current_user.id)
+    redirect_to posts_path
   end
 
   def search_tag

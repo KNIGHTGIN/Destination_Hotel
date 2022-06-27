@@ -51,4 +51,5 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  validates :name, presence: true
 end

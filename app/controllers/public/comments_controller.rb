@@ -4,7 +4,7 @@ class Public::CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save
-      redirect_to posts_path
+      redirect_back(fallback_location: root_path)
     else
       redirect_to posts_path
     end
@@ -15,7 +15,7 @@ class Public::CommentsController < ApplicationController
     if   admin_signed_in?
       redirect_to admin_posts_path
     else
-      redirect_to posts_path
+      redirect_back(fallback_location: root_path)
     end
   end
 

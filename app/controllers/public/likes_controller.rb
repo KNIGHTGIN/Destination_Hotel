@@ -1,4 +1,6 @@
 class Public::LikesController < ApplicationController
+  before_action :authenticate_user!
+  layout 'public/application'
 
   def create
     @like = current_user.likes.create(post_id: params[:post_id])
