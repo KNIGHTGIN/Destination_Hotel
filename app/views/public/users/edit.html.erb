@@ -1,11 +1,28 @@
-<h1>ユーザー情報編集</h1>
+<div class="container">
+  <div class="p-3 mb-2">
+  <h2 class="py-3 font-weight-bold">ユーザー情報編集</h2>
 
-<%= form_with model:@user,url: users_my_page_path, method: :patch do |f| %>
+  <%= form_with model:@user,url: users_my_page_path, method: :patch do |f| %>
+  <%= render "layouts/error", obj: @user %>
 
   <table>
     <%= render "public/users/user-info", f: f %>
   </table>
 
-  <%= f.submit "編集内容を保存" %>
-  <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-danger" %>
-<% end %>
+  <div class="row mt-2">
+    　<div class="col-md-3 mx-auto">
+      <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
+        <span>
+          <i class="fas fa-save"></i> 編集内容を保存
+        </span>
+      <% end %>
+      </div>
+      <div class="col-md-3 mx-auto text-center">
+      <%= link_to users_unsubscribe_path, class: "btn bgleft" do  %>
+        <span><i class="fas fa-sign-out-alt"></i> 退会する</span>
+      <% end %>
+      </div>
+      </div>
+    <% end %>
+  </div>
+</div>

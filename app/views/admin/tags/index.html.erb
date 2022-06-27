@@ -1,5 +1,11 @@
-<h4>タグ一覧</h4>
-  <% @tag_list.each do |list|%>
-    <%=link_to list.name,search_tag_path(tag_id: list.id) %>
-    <%="(#{list.posts.count})" %>
-  <% end %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-3 offset-1 mt-5">
+      <h2 class = "w-auto h-75 p-2 text-center">タグ一覧</h2>
+  　　  　<% @tag_list.each do |list|%>
+          <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+          <%="(#{list.posts.count})" %>
+        <% end %>
+    </div>
+  </div>
+</div>

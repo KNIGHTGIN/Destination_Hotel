@@ -1,10 +1,8 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>Destination_Hotel</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand" href="/"> Destination_Hotel</a>
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
@@ -31,13 +29,14 @@
             <%= link_to "ログイン", new_user_session_path, class: 'nav-link' %>
           </li>
         <% end %>
+
+
+         <div>
+           <%= render "layouts/public/search" %>
+         </div>
+
         </ul>
       </div>
-
-      <div>
-        <%= render "layouts/public/search" %>
-      </div>
-
     </div>
   </nav>
 </header>

@@ -27,7 +27,7 @@ class Admin::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :hotel_name)
+    params.require(:user).permit(:name, :email, :hotel_name, :is_deleted)
   end
 
 end

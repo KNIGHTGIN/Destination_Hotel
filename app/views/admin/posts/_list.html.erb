@@ -15,15 +15,13 @@
          ホテル名:<%= link_to post.hotel_name, admin_post_path(post.id), class:"h4" %>
         </div>
         <div class="col offset-md-1">
-         投稿者: <%= link_to post.user.name, admin_user_path(post.id), class:"h4" %>
+         投稿者: <%= link_to post.user.name, admin_user_path(post.user.id), class:"h4" %>
         </div>
       </div>
       <div class="row">
         <div class="col offset-md-1">
-          <% @post_tags.each do |tag| %>
-            <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
-          <% end %>
-          | 投稿<%= post.updated_at.strftime('%Y/%m/%d') %>
+          タグ:<%= post.tags.map(&:name).join(', ') %></i>
+          | 投稿:<%= post.updated_at.strftime('%Y/%m/%d') %>
           | いいね: <%= post.likes.count %>件
           | コメント: <%= post.comments.size %>件
         </div>

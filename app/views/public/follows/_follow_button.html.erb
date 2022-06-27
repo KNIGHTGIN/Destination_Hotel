@@ -1,5 +1,13 @@
 <% if current_user.followings?(user) %>
-  <%= link_to "フォロー外す", user_follow_path(user_id: user.id), method: :delete %>
+  <div class='profile__button-box'>
+    <%= link_to user_follow_path(user_id: user.id), method: :delete, class: 'button__outline-black', remote: true do %>
+      <span><i class="fas fa-cog"></i>フォロー外す</span>
+    <% end %>
+  </div>
 <% else %>
-  <%= link_to "フォローする", user_follows_path(user_id: user.id), method: :post %>
+  <div class='profile__button-box'>
+    <%= link_to user_follows_path(user_id: user.id), method: :post, class: 'button__black', remote: true do %>
+      <span><i class="fas fa-cog"></i>フォローする</span>
+    <% end %>
+  </div>
 <% end %>

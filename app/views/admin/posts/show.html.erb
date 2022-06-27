@@ -12,7 +12,7 @@
 <p><%= @post.text %></p>
 
 <label>投稿ユーザー</label>
-<p><%= link_to @post.user.name,admin_user_path %></p>
+<p><%= link_to @post.user.name,admin_user_path(@post.user.id) %></p>
 
 <label>タグ</label>
 <% @post_tags.each do |tag| %>
@@ -40,7 +40,7 @@
 </tr>
 <% end %>
 
-<%= link_to edit_post_path(@post), class: "btn btn-block bgleft " do %>
+<%= link_to edit_admin_post_path(@post), class: "btn btn-block bgleft " do %>
 <span><i class="fas fa-cog"></i> 編集する</span>
 <% end %>
 

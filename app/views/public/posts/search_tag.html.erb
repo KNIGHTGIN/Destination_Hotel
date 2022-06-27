@@ -1,44 +1,50 @@
 <div class="container">
-<h5>タグが<%=@tag.name%>の投稿一覧</h5>
+  <h4>タグが<%=@tag.name%>の投稿一覧</h5>
 
-<!--タグリスト-->
-<% @tag_list.each do |list|%>
-<%=link_to list.name,search_tag_path(tag_id: list.id) %>
-<%="(#{list.posts.count})" %><% end %>
-<% @posts.each do |post| %>
-<!--投稿はカードで囲む-->
-<div class="card">
-  <div class="card-body">
+  <!--タグリスト-->
+  <% @tag_list.each do |list|%>
+    <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+    <%="(#{list.posts.count})" %>
+  <% end %>
+
+<% if user_signed_in? %>
+  <% @posts.each do |post| %>
+  <!--投稿はカードで囲む-->
+    <div class="card">
+      <div class="card-body">
     <!--タイトル表示される文字数は２５文字までにしてます-->
-    <h6 class="card-title">
-      <%=link_to post_path(post.id) do %><%= post.hotel_name.truncate(25) %>
-      <% end %>
-    </h6>
-
-
-
-  </div>
-</div>
+        <h4 class="card-title">
+          <%=link_to post_path(post.id) do %>
+            <%= post.hotel_name.truncate(25) %>
+          <% end %>
+        </h4>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
-<div class="pagination pagination-sm justify-content-center">
-       <%= paginate @posts %></div>
+<% if admin_signed_in? %>
+  <% @posts.each do |post| %>
+  <!--投稿はカードで囲む-->
+    <div class="card">
+      <div class="card-body">
+    <!--タイトル表示される文字数は２５文字までにしてます-->
+        <h4 class="card-title">
+          <%=link_to admin_post_path(post.id) do %>
+            <%= post.hotel_name.truncate(25) %>
+          <% end %>
+        </h4>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+  <div class="pagination pagination-sm justify-content-center">
+    <%= paginate @posts %>
+  </div>
 
 </div>
 
-
-<style>
-.card{
-  padding:0;
-  margin:0;
-  border:none;
-}
-
-
-
-h6 {
-  /*線の種類（実線） 太さ 色*/
-  border-bottom: solid 3px black;
-}
-</style>
-
+<% if admin_signed_in? %>
+    <%= link_to "投稿一覧に戻る", admin_posts_path %>
+<% end %>

@@ -39,4 +39,7 @@ class Post < ApplicationRecord
     end
   end
 
+  validates :hotel_name, presence: true
+  validates :text, presence: true
+
 end

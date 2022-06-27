@@ -1,8 +1,15 @@
-<tr>
-  <th>ユーザー名</th>
-  <td><%= f.text_field :name %></td>
-</tr>
-<tr>
-  <th>メールアドレス</th>
-  <td><%= f.email_field :email %> </td>
-</tr>
+<div class="form-group row">
+  <div class="form-group row align-items-center">
+  <label class="col-lg-2 col-form-label font-weight-bold">ユーザー名</label>
+  <div class="col-lg-6">
+    <%= f.text_field :name ,class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="form-group row align-items-center">
+  <label class="col-lg-2 col-form-label font-weight-bold">メールアドレス</label>
+  <div class="col-lg-8">
+    <%= f.email_field :email ,class: "form-control" %>
+  </div>
+</div>

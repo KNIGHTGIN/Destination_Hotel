@@ -1,4 +1,10 @@
 class Public::LikesController < ApplicationController
+  before_action :authenticate_user!
+  layout 'public/application'
+  
+  def index
+   @like = Like.all
+  end
 
   def create
     @like = current_user.likes.create(post_id: params[:post_id])

@@ -13,7 +13,7 @@
           <tbody>
             <tr>
               <td>
-                <%= follow.name %>
+                <%= link_to follow.name, user_path(follow.id) %>
               </td>
               <td>
                 <p>フォロー数：<%= follow.followings.count %></p>
