@@ -1,14 +1,16 @@
+<div class="p-3 mb-2 bg-light">
 <div class = "container">
   <div class = "row">
     <div class = "col-5 ">
       <div class="mt-5" >
-        <h2 class = "w-auto p-2 text-center">管理者ログイン</h2>
+        <h2 class = "w-auto p-2 text-center"><strong>管理者ログイン</strong></h2>
       </div>
     </div>
   </div>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <%= render "layouts/error", obj: resource %>
+
     <div class = "row form-group mt-5">
       <label class = "col-2 offset-2 ">メールアドレス</label>
       <div class="col-5">
@@ -24,17 +26,18 @@
     </div>
 
     <div class = "row">
-      <div class = "col offset-4 mt-4 ">
-        <%= button_tag(type: "submit", class: "btn bgleft shadow-sm") do %>
-          <span>
-            <i class="fas fa-sign-in-alt"></i> ログイン
-          </span>
-        <% end %>
+      <div class = "col offset-4 mt-5 ">
+        <div class="actions">
+          <%= button_tag(type: "submit", class: "btn bgleft btn-secondary shadow-sm ml-2") do %>
+            <span>
+              <i class="fas fa-sign-in-alt"></i> ログイン
+            </span>
+          <% end %>
+        </div>
       </div>
     </div>
 
   <% end %>
 
-  <%= render "admin/shared/links" %>
-
+</div>
 </div>

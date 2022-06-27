@@ -1,29 +1,36 @@
-<div class="container">
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
 
-  <div class="row my-3 text-center">
-    <div class="col-lg-4 mt-3">
-      <h2><%= @user.name %>さんの詳細</h2>
+    <div class="row my-3">
+      <div class="col-lg-4 mt-3">
+        <h2 class="font-weight-bold"><%= @user.name %>さんの詳細</h2>
+        <%= render "public/follows/follow_button", user: @user %>
+      </div>
     </div>
+
+    <div class = "row">
+      <div class = "col-md-6">
+        <table class="table table-bordered">
+          <tr>
+            <td class="font-weight-bold table-secondary">ユーザー名</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold table-secondary">投稿数</td>
+            <td><%= @user.posts.count %>件</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold table-secondary">いいね数</td>
+            <td><%= @user.likes.count %>件</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold table-secondary">コメント数</td>
+            <td><%= @user.comments.count %>件</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+
   </div>
-
-  <table class="table table-bordered">
-    <tr>
-      <td class="table-secondary">ユーザー名</td>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <td class="table-secondary">投稿数</td>
-      <td><%= @user.posts.count %>件</td>
-    </tr>
-    <tr>
-      <td class="table-secondary">いいね数</td>
-      <td><%= @user.likes.count %>件</td>
-    </tr>
-    <tr>
-      <td class="table-secondary">コメント数</td>
-      <td><%= @user.comments.count %>件</td>
-    </tr>
-
-    <%= render "public/follows/follow_button", user: @user %>
-
 </div>
