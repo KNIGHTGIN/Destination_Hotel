@@ -1,45 +1,36 @@
- <% if users.present? %>
-    <% users.each do |user| %>
+<% if users.present? %>
+  <% users.each do |user| %>
 
-　　　　<div class="row">
-      　   <div class="col offset-md-1">
-        ユーザー名:<%= link_to user.name, admin_user_path(user.id), class:"h4" %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <label>メールアドレス:</label>
-          </div>
-          <div class="col-lg-8">
-            <p><%= user.email %></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <label>投稿日:</label>
-          </div>
-          <div class="col-lg-8">
-            <p><%= user.created_at.strftime('%Y/%m/%d') %></p>
-          </div>
-        </div>
-
-        <% if user.is_deleted==true %>
-          <td class="text-danger font-weight-bold">退会</td>
-        <% else %>
-          <td class="text-success font-weight-bold">有効</td>
-        <% end %>
-
-        <div class="col">
-          <%= link_to "編集する", edit_admin_user_path(user.id), class:"btn btn-success py-0" %>
-        </div>
+      <div class="col-3">
+        <h4 label>ユーザー名:<%= link_to user.name, admin_user_path(user.id), class:"h4" %></h4>
       </div>
+
+      <div class="col-4">
+        <h4 label>メールアドレス:<%= user.email %></h4>
+      </div>
+
+      <div class="col-4">
+        <h4 label>登録日:<%= user.created_at.strftime('%Y/%m/%d') %></h4>
+      </div>
+
+    <% if user.is_deleted==true %>
+      <h4 class="text-danger font-weight-bold">退会</h4>
+    <% else %>
+      <h4 class="text-success font-weight-bold">有効</h4>
     <% end %>
-  <% else %>
-    <div class="row mb-3">
-      <div class="col offset-md-1">
-        <h5>該当なし</h5>
-      </div>
-    </div>
+
+      <table class="table table-bordered">
+        <tr>
+          <%= link_to edit_admin_user_path(user), class: "btn bgleft btn-sm pl-3 pr-3" do %>
+            <h5 span><i class="fas fa-cog"></i> 編集する</h5>
+          <% end %>
+        </tr>
+      </table>
   <% end %>
+<% else %>
+  <div class="row mb-3">
+    <div class="col offset-md-1">
+      <h5>該当なし</h5>
+    </div>
+  </div>
+<% end %>

@@ -1,49 +1,81 @@
-<h1>投稿詳細</h1>
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
+    <div class="row my-3">
+      <div class="col-lg-4 mt-3">
+        <h2 class="font-weight-bold">投稿詳細</h2>
+      </div>
+    </div>
 
-<label>投稿画像</label>
-<% @post.post_images.each do |post_image| %>
-  <%= attachment_image_tag post_image, :image, size: "130x130" %>
-<% end %>
+    <div class="row">
+      <div class="post-image-box">
+        <% @post.post_images.each do |post_image| %>
+          <%= attachment_image_tag post_image, :image, size: "250x250" %>
+        <% end %>
+      </div>
+    </div>
 
-<label>ホテル名</label>
-<p><%= @post.hotel_name %></p>
+    <div class="col">
+      <div class="row">
+        <div class="col-12 mt-3">
+          <h4 class>ホテル名:<%= @post.hotel_name %></h4>
+          <h4 class>本文:<%= @post.text %></h4>
+          <h4 class>投稿ユーザー:<%= link_to @post.user.name,admin_user_path(@post.user.id), class:"h4" %></h4>
+          <h4 class = "flex-wrap">タグ:
+            <% @post_tags.each do |tag| %>
+              <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+            <% end %></h4>
+          <h4 class>いいね件数:<%= @post.likes.count %></h4>
+          <h4 class>コメント件数:<%= @post.comments.count %></h4>
+        </div>
+      </div>
 
-<label>本文</label>
-<p><%= @post.text %></p>
+      <h2 class="font-weight-bold">いいねしたユーザー</h2>
+        <% @post.liked_users.each do |user| %>
+          <li><%= user.name %></li>
+        <% end %>
 
-<label>投稿ユーザー</label>
-<p><%= link_to @post.user.name,admin_user_path(@post.user.id) %></p>
+      <h4 class="font-weight-bold">コメント</h4>
+        <%= @post.body %>
 
-<label>タグ</label>
-<% @post_tags.each do |tag| %>
-  <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
-<% end %>
+        <h4 class="font-weight-bold">コメント一覧</h4>
+　　　　  <table class='table table-bordereless'>
+            <thead>
+              <tr>
+                <th>ユーザー名</th>
+                <th>コメント</th>
+                <th>投稿日</th>
+                <th colspan='3'></th>
+              </tr>
+            </thead>
+            <% @comments.each do |comment| %>
+              <tr>
+                <td><%= comment.user.name %></td>
+                <td><%= comment.body %></td>
+                <td>(<%= comment.created_at.strftime('%Y/%m/%d') %>)</td>
+                <td>
+                  <%=link_to comment_path(comment.id), method: :delete, class: "btn bgleft btn-sm pl-3 pr-3" do %>
+                    <h6 class><i class="fas fa-eraser"></i>削除</h6>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
 
-<label>いいね件数: <%= @post.likes.count %></label>
-<lavel>コメント件数: <%= @post.comments.count %></lavel>
-<h2>いいねしたユーザー</h2>
-<% @post.liked_users.each do |user| %>
-  <li><%= user.email %></li>
-<% end %>
+          <div class="row">
+            <table class="table table-bordered">
+              <tr>
+                <%= link_to  edit_admin_post_path(@post), class: "btn bgleft btn-sm pl-3 pr-3" do %>
+                  <h5 span><i class="fas fa-cog"></i> 編集する</h5>
+                <% end %>
+              </tr>
 
-<label>コメント</label>
-<%= @post.body %>
-
-<% @comments.each do |comment| %>
-<tr>
-  <td><%= comment.user.name %></td>
-  <td><%= comment.body %></td>
-  <td>(<%= comment.created_at.strftime('%Y/%m/%d') %>)</td>
-  <td>
-      <%=link_to "削除", comment_path(comment.id), method: :delete %>
-  </td>
-</tr>
-<% end %>
-
-<%= link_to edit_admin_post_path(@post), class: "btn btn-block bgleft " do %>
-<span><i class="fas fa-cog"></i> 編集する</span>
-<% end %>
-
-　<div>
-　  <%= link_to "投稿一覧に戻る", admin_posts_path %>
-　</div>
+              <tr>
+                <%= link_to admin_posts_path, class: "btn bgleft btn-sm pl-3 pr-3" do %>
+                  <h5 span><i class="fas fa-book-open"></i> 投稿一覧</h5>
+                <% end %>
+              </tr>
+            </table>
+       　  </div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,20 @@
-<div class="container">
-  <div class="row mb-3">
-    <div class="col">
-      <h4>投稿一覧（全<%= @posts.total_count %>件）</h4>
-    </div>
-  </div>
+<div class="p-3 mb-2 bg-light">
+  <div class="col-md-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center mb-5">
+          <h1 class="fonr-weight-bold">投稿一覧</h1>
+          <h4 class="m-0 text-center pt-2">(全<%= @posts.count %>件)</h4>
+        </div>
+      </div>
 
-  <%= render partial:"list", locals: {posts: @posts} %>
-  
-  <div class="row mb-3">
-    <div class="col-2 mx-auto">
-      <%= paginate @posts %>
+      <%= render partial:"list", locals: {posts: @posts} %>
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <%= paginate @posts %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
