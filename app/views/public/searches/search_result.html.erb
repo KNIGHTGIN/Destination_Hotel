@@ -1,24 +1,35 @@
-<h2>検索結果</h2>
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
 
-<table class="table table-hover table-inverse">
+    <div class="row my-3">
+      <div class="col-lg-4 mt-3">
+        <h2 class="font-weight-bold">検索結果</h2>
+      </div>
+    </div>
+
+    <div class ="row">
+　　  <table class="table table-borderless">
   <!--検索対象モデルがUserの時 -->
-  <% if @range == "ユーザー名" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td>ユーザー名:<%= link_to user.name, user_path(user.id) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
+  　　  　<% if @range == "ユーザー名" %>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>ユーザー名:<%= link_to user.name, user_path(user.id) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
     <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td>ホテル名:<%= link_to post.hotel_name, post_path(post.id) %></td>
-          <td>本文:<%= post.text %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td>ホテル名:<%= link_to post.hotel_name, post_path(post.id) %></br>
+                本文:<%= post.text %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,28 +1,25 @@
-<div class="container">
-  <div class="p-3 mb-2">
-  <h2 class="py-3 font-weight-bold">ユーザー情報編集</h2>
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
+    <h2 class="py-3 font-weight-bold">ユーザー情報編集</h2>
 
-  <%= form_with model:@user,url: users_my_page_path, method: :patch do |f| %>
-  <%= render "layouts/error", obj: @user %>
+    <%= form_with model:@user,url: users_my_page_path, method: :patch do |f| %>
+    <%= render "layouts/error", obj: @user %>
 
-  <table>
-    <%= render "public/users/user-info", f: f %>
-  </table>
+      <%= render "public/users/user-info", f: f %>
 
-  <div class="row mt-2">
-    　<div class="col-md-3 mx-auto">
-      <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
-        <span>
-          <i class="fas fa-save"></i> 編集内容を保存
-        </span>
-      <% end %>
+    <div class="row">
+    　<div class="col-3 text-left">
+        <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
+          <h6 span><i class="fas fa-book"></i>編集内容を保存</h6>
+        <% end %>
       </div>
-      <div class="col-md-3 mx-auto text-center">
-      <%= link_to users_unsubscribe_path, class: "btn bgleft" do  %>
-        <span><i class="fas fa-sign-out-alt"></i> 退会する</span>
-      <% end %>
+
+      <div class="col-3 text-right">
+        <%= link_to users_unsubscribe_path, class: "btn bgleft btn-sm pl-3 pr-3" do  %>
+          <h6 span><i class="fas fa-sign-out-alt"></i> 退会する</h6>
+        <% end %>
       </div>
-      </div>
+    </div>
     <% end %>
   </div>
 </div>

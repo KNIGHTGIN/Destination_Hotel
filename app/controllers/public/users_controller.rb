@@ -34,9 +34,14 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @posts = @user.liked_posts
+  end
+
   private
   def user_params
-    params.require(:user).permit(:name, :email, :posts, :likes, :comments, :is_deleted)
+    params.require(:user).permit(:name, :email, :posts, :likes, :comments, :hotel_name, :text, :is_deleted)
   end
 
 end
