@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_142107) do
+ActiveRecord::Schema.define(version: 2022_06_18_195010) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2022_06_17_142107) do
   create_table "follows", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "follower_id"
+    t.integer "followed_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -63,8 +65,8 @@ ActiveRecord::Schema.define(version: 2022_06_17_142107) do
     t.integer "likes_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
     t.text "body"
+    t.string "name"
   end
 
   create_table "tags", force: :cascade do |t|

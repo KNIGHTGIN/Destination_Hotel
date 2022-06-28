@@ -29,4 +29,17 @@ class Post < ApplicationRecord
    end
   end
 
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("hotel_name LIKE?","#{word}")
+    elsif search == "partial_match"
+      @post = Post.where("hotel_name LIKE?","%#{word}%")
+    else
+      @post = Post.all
+    end
+  end
+
+  validates :hotel_name, presence: true
+  validates :text, presence: true
+
 end

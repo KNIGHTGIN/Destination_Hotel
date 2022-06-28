@@ -1,0 +1,47 @@
+<div class="row d-flex flex-wrap">
+<% posts.each do |post| %>
+  <div class="row mb-3 d-flex align-items-center">
+    <div class="col-md-2 offset-md-1">
+      <%= link_to admin_post_path(post.id) do %>
+        <% if post.post_images.first %>
+          <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "250x250" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", size: "250x250" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-8">
+          ホテル名:<%= link_to post.hotel_name, admin_post_path(post.id), class:"h4" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+         投稿者: <%= link_to post.user.name, admin_user_path(post.user.id), class:"h4" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          タグ:<%= post.tags.map(&:name).join(', ') %></i>
+          | 投稿:<%= post.updated_at.strftime('%Y/%m/%d') %>
+          | いいね: <%= post.likes.count %>件
+          | コメント: <%= post.comments.size %>件
+        </div>
+      </div>
+    </div>
+      <div class="row">
+      <table class="table table-bordered">
+        <tr>
+          <%= link_to edit_admin_post_path(post.id), class:"btn bgleft btn-sm pl-3 pr-3" do %>
+            <h5 span><i class="fas fa-cog"></i> 編集する</h5>
+          <% end %>
+          <%= link_to admin_post_path(post.id), method: :delete, class:"btn bgleft btn btn-danger", data: { confirm: '本当に削除しますか？' } do %>
+            <span><i class="fas fa-eraser"></i> 削除する</span>
+          <% end %>
+        </tr>
+      </table>
+      </div>
+  </div>
+<% end %>
+</div>

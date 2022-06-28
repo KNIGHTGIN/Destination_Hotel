@@ -2,7 +2,12 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   layout 'public/application'
 
+  def my_page
+    @user = User.where(id: current_user.id).eager_load(:posts, :likes)
+  end
+
   def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -12,7 +17,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      flash[:notice] = "会員情報を更新しました"
+      flash[:notice] = "ユーザー情報を更新しました"
       redirect_to users_my_page_path
     else
       render :edit
@@ -29,9 +34,14 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @posts = @user.liked_posts
+  end
+
   private
   def user_params
-    params.require(:user).permit(:name, :email, :is_deleted)
+    params.require(:user).permit(:name, :email, :posts, :likes, :comments, :hotel_name, :text, :is_deleted)
   end
 
 end

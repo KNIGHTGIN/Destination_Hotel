@@ -1,51 +1,78 @@
-<% if @post.present? %>
+<div class="p-3 mb-2 bg-light">
+  <div class="col-md-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center mb-5">
+          <h1 class="fonr-weight-bold">投稿一覧</h1>
+          <h4 class="m-0 text-center pt-2">(全<%= @posts.count %>件)</h4>
+        </div>
+      </div>
 
-    <div class="row mb-3">
-      <div class="col-8 p-0 mx-auto text-center">
-        <div class="slideshow shadow">
-          <div class="main-visual-content text-light">
-            <h4>
-            <%= link_to @post.hotel_name, post_path(@post.id) %>
-            </h4>
+      <div class="row d-flex flex-wrap">
+        <% @posts.each do |post| %>
+          <div class="row mb-3 d-flex align-items-center">
+            <div class="col-md-2 offset-md-1">
+              <%= link_to post_path(post.id) do %>
+                <% if post.post_images.first %>
+                  <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "250x250" %>
+                <% else %>
+                  <%= image_tag "no_image.jpg", size: "250x250" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col-8">
+                  ホテル名:<%= link_to post.hotel_name, post_path(post.id), class:"h4" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  投稿者: <%= link_to post.user.name, user_path(post.user.id), class:"h4" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-10">
+                  タグ:<%= post.tags.map(&:name).join(', ') %>
+                    | 投稿日: <%= post.updated_at.strftime('%Y/%m/%d') %>
+                    | いいね: <%= post.likes.count %>件
+                    | コメント: <%= post.comments.size %>件
+                </div>
+              </div>
+            </div>
           </div>
-          <% if @post.post_images.present? %>
-            <% @post.post_images.each do |img| %>
-              <%= attachment_image_tag img, :image, size: "130x130" %>
-            <% end %>
-          <% else %>
-            <%= image_tag "no_image.jpg", size: "130x130" %>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <%= paginate @posts %>
+        </div>
+      </div>
+
+
+    <div class="col-md-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center mb-5">
+            <h3 class="fonr-weight-bold">タグ一覧</h3>
+          </div>
+        </div>
+        <div class="row d-flex flex-wrap">
+          <% @tag_list.each do |list|%>
+            <h6 class><%=link_to list.name,search_tag_path(tag_id: list.id) %>
+            <%="(#{list.posts.count})" %></h6>
           <% end %>
-
-          <% @post_tags.each do |tag| %>
-  　　　　  　　　<%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
-　　　　　<% end %>
-
-          <% @posts.each do |post| %>
-            <i class="fas fa-tag"><%= post.tags.map(&:name).join(', ') %></i>
-          <% end %>
-
         </div>
       </div>
     </div>
 
-
-    <div class="row mb-3">
-      <div class="col-2 mx-auto">
-        <%= paginate @posts %>
-      </div>
-    </div>
-
-    <h4>タグ一覧</h4>
-          <% @tag_list.each do |list|%>
-            <%=link_to list.name,search_tag_path(tag_id: list.id) %>
-            <%="(#{list.posts.count})" %>
-          <% end %>
-
-  <% else %>
-  <div class="row mb-3">
-    <div class="col">
-      <h5>投稿はありません</h5>
-    </div>
+    <table class="table table-bordered">
+      <tr>
+        <%= link_to new_post_path, class: "btn bgleft btn-sm pl-3 pr-3" do %>
+          <h5 span><i class="fas fa-book-open"></i> 新規投稿</h5>
+        <% end %>
+      </tr>
+    </table>
   </div>
-
-  <% end %>
+</div>

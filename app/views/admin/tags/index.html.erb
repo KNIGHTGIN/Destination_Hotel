@@ -1,0 +1,13 @@
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
+    <div class="row my-3">
+      <div class="col-12">
+        <h2 class="font-weight-bold">タグ一覧</h2>
+  　　  　<% @tag_list.each do |list|%>
+          <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+          <%="(#{list.posts.count})" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

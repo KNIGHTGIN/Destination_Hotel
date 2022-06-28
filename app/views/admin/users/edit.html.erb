@@ -1,0 +1,33 @@
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
+    <h2 class="py-3 font-weight-bold"><%= @user.name %>のユーザー情報編集</h2>
+
+    <%= form_with model:@user,url: admin_user_path(@user.id), method: :patch do |f| %>
+    <%= render "layouts/error", obj: @user %>
+
+    <%= render "public/users/user-info", f: f %>
+
+    <div class = "row ml-0">
+      <table class = "col-4">
+        <tr>
+          <th>ユーザーステータス</th>
+  　       <td>
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deleted, "有効", value: false %>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deleted, "退会", value: true %>
+          </td>
+          </tr>
+      </table>
+    </div>
+    
+    <div class="row">
+    　<div class="col-3 text-left">
+        <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
+          <h6 span><i class="fas fa-book"></i>編集内容を保存</h6>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

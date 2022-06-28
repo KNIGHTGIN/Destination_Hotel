@@ -1,27 +1,36 @@
-<h1>マイページ</h1>
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
 
-　<div>
-　  <h2>登録情報</h2>
-　  <%= link_to "編集する", users_my_page_edit_path %>
+    <div class="row my-3">
+      <div class="col-lg-4 mt-3">
+        <h2 class="font-weight-bold"><%= @user.name %>さんの詳細</h2>
+        <%= render "public/follows/follow_button", user: @user %>
+      </div>
+    </div>
 
-　  <table>
-　    <tr>
-　      <td>ユーザー名</td>
-　      <td><%= current_user.name %></td>
-　    </tr>
-　    <tr>
-　      <td>メールアドレス</td>
-　      <td><%= current_user.email %></td>
-　    </tr>
-　  </table>
-　</div>
+    <div class = "row">
+      <div class = "col-md-6">
+        <table class="table table-bordered">
+          <tr>
+            <td class="font-weight-bold table-secondary">ユーザー名</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold table-secondary">投稿数</td>
+            <td><%= @user.posts.count %>件</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold table-secondary">いいね数</td>
+            <td><%= @user.likes.count %>件</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold table-secondary">コメント数</td>
+            <td><%= @user.comments.count %>件</td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-　<div>
-　  <h2>投稿一覧</h2>
-　  <%= link_to "一覧を見る", posts_path %>
-　</div>
 
-　<div>
-　  <h2>いいね一覧</h2>
-　  <%= link_to "一覧を見る" %>
-　</div>
+  </div>
+</div>

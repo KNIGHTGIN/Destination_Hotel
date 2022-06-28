@@ -1,20 +1,58 @@
-<h1>投稿編集</h1>
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
+    <div class="w-25 d-flex align-items-center justify-content-center my-5 ml-5">
+      <h2 class="font-weight-bold">投稿編集</h2>
+    </div>
 
-<%= form_with model: @post do |f|  %>
+    <div class="row">
+      <div class="col-sm-10 offset-md-2">
 
-<h4>ホテル名</h4>
-<%= f.text_field :hotel_name, autofocus: true, placeholder: "ホテル名", class:"form-control" %>
+      <%= form_with model: @post do |f|  %>
+      <%= render 'layouts/error', obj: @post %>
 
-<h4>本文</h4>
-<%= f.text_area :text, autofocus: true,　placeholder: "本文", class: "form-control" %>
+      <div class="form-group row">
+        <%= f.label :name, "ホテル名", class: "col-md-4 col-form-label" %>
+        <div class="col-md-5">
+          <%= f.text_field :hotel_name, class: "form-control" %>
+        </div>
+      </div>
 
-<h4>画像</h4>
-<%= f.attachment_field :post_images_images, multiple: true %>
+      <div class="form-group row">
+        <%= f.label :text, "本文", class: "col-md-4 col-form-label" %>
+        <div class="col-md-5">
+          <%= f.text_area :text, rows: 5,class: "form-control" %>
+        </div>
+      </div>
 
-<h4>タグ</h4>
-<%= f.text_field :name,value: @tag_list,class:"form-control"%>
+      <div class="form-group row">
+        <%= f.label :image, "画像（複数選択可）", class: "col-md-4 col-form-label" %>
+        <div class="col-md-5">
+        <%= f.file_field :post_images_images, class: "form-control-plaintext" %>
+        </div>
+      </div>
 
-<%= f.submit "編集する", class:"col-md-3 btn btn-success" %>
-<%= link_to "削除する", post_path(params[:id]), class:"col-md-3 btn btn-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <div class="form-group row">
+        <%= f.label :name, "タグ (,で区切ると複数タグ登録可)", class: "col-md-4 col-form-label" %>
+        <div class="col-md-5">
+          <%= f.text_field :name, value: @tag_list, class:"form-control"%>
+        </div>
+      </div>
 
-<% end %>
+      <div class="row">
+        <div class="col-3 text-left">
+          <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
+            <h6 span><i class="fas fa-book"></i>編集内容を保存</h6>
+          <% end %>
+        </div>
+
+        <div class="col-3 text-right">
+　　　    <%= link_to post_path(@post.id), method: :delete, class: "btn bgleft btn btn-danger",data: {confirm: "本当に削除しますか？" }  do %>
+            <span><i class="fas fa-eraser"></i> 削除する</span>
+          <% end %>
+　　　  </div>
+　　　</div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

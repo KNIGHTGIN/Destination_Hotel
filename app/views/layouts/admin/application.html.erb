@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
+    <title>Destination_Hotel</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%= render 'layouts/admin/header' %>
-   <main>
-     <%= yield %>
-   </main>
+    <main>
+      <% if flash[:notice] %>
+        <p id="notice" class="alert alert-success py-4"><%= notice %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p id="alert" class="alert alert-danger py-4"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer class="navbar navbar-expand-lg navbar-light bg-warning">
+      <div class="container">
+        <div class="row no-gutters">
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
 
