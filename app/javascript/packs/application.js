@@ -10,8 +10,16 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
+import "skippr.min";
+import "script.js";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
+
+//= require jquery　←追加
+//= require jquery_ujs　←追加
+//= require activestorage
+//= require turbolinks
+//= require_tree .
 
 Rails.start()
 Turbolinks.start()

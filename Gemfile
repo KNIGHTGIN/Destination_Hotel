@@ -66,3 +66,4 @@ gem "refile-mini_magick"
 gem 'kaminari'
 
 gem 'whenever', require: false
+gem 'jquery-rails'
