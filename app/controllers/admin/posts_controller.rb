@@ -4,10 +4,10 @@ class Admin::PostsController < ApplicationController
 
 
   def index
-    @post = Post.last
+    #@post = Post.last
     @posts = Post.page(params[:page]).per(10)
     @tag_list =Tag.all
-    @post_tags = @post.tags
+    #@post_tags = @post.tags
   end
 
   def show
