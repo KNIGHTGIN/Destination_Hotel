@@ -1,12 +1,12 @@
 <% if current_user.followings?(user) %>
   <div class='profile__button-box'>
-    <%= link_to user_follow_path(user_id: user.id), method: :delete, class: 'btn bgleft btn-sm pl-3 pr-3 py-3', remote: true do %>
+    <%= link_to user_follow_path(user_id: user.id), method: :delete, class: 'btn bgleft btn-sm pl-3 pr-3 py-3' do %>
       <h6 span><i class="fas fa-handshake-slash"></i>フォロー外す</h6>
     <% end %>
   </div>
 <% else %>
   <div class='profile__button-box'>
-    <%= link_to user_follows_path(user_id: user.id), method: :post, class: 'btn bgleft btn-sm pl-3 pr-3 py-3', remote: true do %>
+    <%= link_to user_follows_path(user_id: user.id), method: :post, class: 'btn bgleft btn-sm pl-3 pr-3 py-3' do %>
       <h6 span><i class="fas fa-handshake"></i>フォローする</h6>
     <% end %>
   </div>

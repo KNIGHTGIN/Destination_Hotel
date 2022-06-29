@@ -39,6 +39,11 @@ class Public::UsersController < ApplicationController
     @posts = @user.liked_posts
   end
 
+  def hotels
+    @user = User.find(params[:id])
+    @posts = @user.posts
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :posts, :likes, :comments, :hotel_name, :text, :is_deleted)

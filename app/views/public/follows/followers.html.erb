@@ -14,7 +14,7 @@
           <tbody>
             <tr>
               <td>
-                <%= follower.name %>
+                <%= link_to follower.name, user_path(follower.id) %>
               </td>
               <td>
                 <p>フォロー数：<%= follower.followings.count %></p>

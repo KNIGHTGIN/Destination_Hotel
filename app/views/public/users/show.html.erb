@@ -17,11 +17,11 @@
           </tr>
           <tr>
             <td class="font-weight-bold table-secondary">投稿数</td>
-            <td><%= @user.posts.count %>件</td>
+            <td><%= link_to "#{@user.posts.count}件", hotels_user_path(@user) %></td>
           </tr>
           <tr>
             <td class="font-weight-bold table-secondary">いいね数</td>
-            <td><%= @user.likes.count %>件</td>
+            <td><%= link_to "#{@user.likes.count}件", likes_user_path(@user) %></td>
           </tr>
           <tr>
             <td class="font-weight-bold table-secondary">コメント数</td>

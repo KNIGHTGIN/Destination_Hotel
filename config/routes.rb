@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get 'followers' => 'follows#followers', as: 'followers'
       member do
         get 'likes'
+        get 'hotels'
       end
     end
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
