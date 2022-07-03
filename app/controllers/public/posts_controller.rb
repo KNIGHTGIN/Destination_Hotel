@@ -26,7 +26,21 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     tag_list = params[:post][:name].split(',')
     if @post.save
-      @post.save_tag(tag_list)
+
+      # tags = Vision.get_image_data(@post.image)
+      # tags.each do |tag|
+      #   list.tags.create(name: tag)
+      # end
+      #複数投稿画像のためそれぞれの情報が必要
+      @post.post_images.each do |post_image|
+        #それぞれの画像のデータをとりタグ付け
+        image_tags = Vision.get_image_data(post_image.image)
+        #image_tagsが揃うとtag_listへ保存
+        tag_list += image_tags
+      end
+      #uniqをつけタグのダブりをなくす
+      @post.save_tag(tag_list.uniq)
+
       flash[:notice] = "投稿を保存しました"
       redirect_to posts_path
     else
@@ -68,7 +82,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, :body, post_images_images: [])
+    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, :body, :list, post_images_images: [])
   end
 
 end

@@ -67,3 +67,4 @@ gem 'kaminari'
 
 gem 'whenever', require: false
 gem 'jquery-rails'
+gem 'dotenv-rails'
