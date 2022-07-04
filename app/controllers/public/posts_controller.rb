@@ -57,6 +57,12 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     tag_list=params[:post][:name].split(',')
     if @post.update(post_params)
+      @post.post_images.each do |post_image|
+        #それぞれの画像のデータをとりタグ付け
+        image_tags = Vision.get_image_data(post_image.image)
+        #image_tagsが揃うとtag_listへ保存
+        tag_list += image_tags
+      end
       @post.save_tag(tag_list)
       flash[:notice] = "投稿を更新しました"
       redirect_to post_path(@post.id)
