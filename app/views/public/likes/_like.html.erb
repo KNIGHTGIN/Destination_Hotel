@@ -1,0 +1,11 @@
+<tr>
+  <% if current_user.already_liked?(@post) %>
+    <%= button_to post_like_path(@post), method: :delete, class: "btn bgleft btn-sm pl-3 pr-3", remote: true do %>
+      <h5 span><i class="fas fa-heart"></i> いいね取り消し</h5>
+    <% end %>
+  <% else %>
+    <%= button_to post_likes_path(@post), class: "btn bgleft btn-sm pl-3 pr-3", remote: true do %>
+      <h5 span><i class="fas fa-heart"></i> いいね</h5>
+    <% end %>
+  <% end %>
+</tr>
