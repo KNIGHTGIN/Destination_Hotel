@@ -3,13 +3,15 @@ class Public::FollowsController < ApplicationController
   layout 'public/application'
 
   def create
-    current_user.follow(params[:user_id])
-    redirect_back(fallback_location: root_path)
+    @user=User.find(params[:used_id])
+    current_user.follow(@user.id)
+    #redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    current_user.unfollow(params[:user_id])
-    redirect_back(fallback_location: root_path)
+    @user=User.find(params[:used_id])
+    current_user.unfollow(@user.id)
+    #redirect_back(fallback_location: root_path)
   end
 
   def following
