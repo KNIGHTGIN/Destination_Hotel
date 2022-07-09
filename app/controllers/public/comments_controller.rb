@@ -3,11 +3,11 @@ class Public::CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
-    if @comment.save
-      redirect_back(fallback_location: root_path)
-    else
-      redirect_to posts_path
-    end
+    @comment.save
+      #redirect_back(fallback_location: root_path)
+    #else
+      #redirect_to posts_path
+    #end
   end
 
   def destroy
