@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :post_images, dependent: :destroy
-  accepts_attachments_for :post_images, attachment: :image
+  accepts_attachments_for :post_images, attachment: :image, append: true
   has_many :post_tags,dependent: :destroy
   has_many :tags,through: :post_tags
 
@@ -41,7 +41,7 @@ class Post < ApplicationRecord
 
   validates :hotel_name, presence: true
   validates :text, presence: true
-  
+
  def get_like(user_id)
    Like.find_by(post_id: self.id, user_id: user_id)
  end

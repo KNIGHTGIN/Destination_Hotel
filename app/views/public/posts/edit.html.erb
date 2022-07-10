@@ -30,10 +30,11 @@
         </div>
         <% @post.post_images.each do |post_image| %>
 　　　　  <%= attachment_image_tag post_image, :image, size: "250x250" %>
+　　　　  <%= f.check_box :post_image_id, {multiple: true}, post_image.id, false %>
         <% end %>
         <%= f.label :image, "画像（複数選択可）", class: "col-md-4 col-form-label" %>
         <div class="col-md-5">
-        <%= f.file_field :post_images_images, class: "form-control-plaintext" %>
+        <%= f.attachment_field :post_images_images, multiple: true, class: "form-control-plaintext" %>
         </div>
       </div>
 

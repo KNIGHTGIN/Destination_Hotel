@@ -55,6 +55,12 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    if params[:post][:post_image_id]
+      params[:post][:post_image_id].each do |post_image_id|
+        image = @post.post_images.find(post_image_id)
+        image.destroy
+      end
+    end
     tag_list=params[:post][:name].split(',')
     if @post.update(post_params)
       @post.post_images.each do |post_image|
