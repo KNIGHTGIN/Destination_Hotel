@@ -1,1 +1,1 @@
-$("#comment_js").html("<%= j(render "public/comments/comment", post: @post) %>");
+$("#comment_js").html("<%= j(render "public/comments/comment", comment: @new_comment, post: @post, comments: @comments) %>");

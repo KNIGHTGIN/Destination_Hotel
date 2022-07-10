@@ -41,5 +41,9 @@ class Post < ApplicationRecord
 
   validates :hotel_name, presence: true
   validates :text, presence: true
+  
+ def get_like(user_id)
+   Like.find_by(post_id: self.id, user_id: user_id)
+ end
 
 end
