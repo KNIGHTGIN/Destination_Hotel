@@ -4,7 +4,6 @@
     <%= form_with(model:[post, comment], method: :post, local: false) do |f| %>
       <%= f.text_area :body,rows: 5 %>
         <%= f.hidden_field :post_id, value: post.id %>
-        <%= f.submit "コメント"  %>
           <%= button_tag(type: "submit", class: "btn bgleft btn-sm shadow-sm ml-2") do %>
             <span><i class="fas fa-pen"></i> コメントする</span>
           <% end %>
