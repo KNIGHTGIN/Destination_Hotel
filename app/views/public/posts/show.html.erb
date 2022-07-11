@@ -24,7 +24,6 @@
             <% @post_tags.each do |tag| %>
               <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
             <% end %></h4>
-          <h4 class>いいね件数:<%= @post.likes.count %></h4>
          
         </div>
       </div>
