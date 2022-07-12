@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       member do
         get 'likes'
         get 'hotels'
+        get 'comments'
       end
     end
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do

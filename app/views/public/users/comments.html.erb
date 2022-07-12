@@ -1,0 +1,18 @@
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
+
+    <div class="row my-3">
+      <div class="col-lg-4 mt-3">
+        <h2 class="font-weight-bold">コメントした投稿一覧</h2>
+      </div>
+    </div>
+
+    <% @posts.each do |post| %>
+      <table class="table table-borderless">
+        <tr>
+          <td><%= link_to post.hotel_name, post_path(post.id) %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

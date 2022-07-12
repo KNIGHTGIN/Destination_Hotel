@@ -44,6 +44,11 @@ class Public::UsersController < ApplicationController
     @posts = @user.posts
   end
 
+  def comments
+    @user = User.find(params[:id])
+    @posts =@user.comments
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :posts, :likes, :comments, :hotel_name, :text, :is_deleted)
