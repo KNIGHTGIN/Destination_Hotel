@@ -94,7 +94,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, :body, :list, post_images_images: [])
+    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, :body, :star, :list, post_images_images: [])
   end
 
 end
