@@ -1,0 +1,20 @@
+<%= form_with(url: admin_tags_destroy_all_path, method: "get")  do |f| %>
+  <% @tag_list.each do |list|%>
+    <%= fields_for "tags[]", list do |list_form| %>
+      <%= list_form.check_box :id, {multiple: true, checked: false}, list.id, false %>
+        <%= list.name %>
+          <%="(#{list.posts.count})" %>
+    <% end %>
+  <% end %>
+  <%= f.submit "削除" %>
+<% end %>
+
+
+
+<div class="row">
+  <div class="col-3 text-left">
+　  <%= link_to admin_tag_path, method: :delete, class: "btn bgleft btn btn-danger",data: {confirm: "本当に削除しますか？" }  do %>
+      <span><i class="fas fa-eraser"></i> 削除する</span>
+    <% end %>
+　</div>
+</div>

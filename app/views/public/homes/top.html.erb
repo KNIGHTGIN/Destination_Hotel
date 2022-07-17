@@ -30,16 +30,15 @@
           </div>
         </div>
 
-    　　<div class="row d-flex justify-content-center">
+    　　<div class="row d-flex flex_wrap">
     　　  　<% @posts.each do |post| %>
-            <div class="col-lg-4 col-sm-6 mb-5">
               <div class="post-image-text card-effect mx-auto text-center">
                 <div class="post-image-box">
                   <%= link_to post_path(post.id) do %>
                     <% if post.post_images.first %>
-                      <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "300x300" %>
+                      <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "200x200" %>
                     <% else %>
-                      <%= image_tag "no_image.jpg", size: "300x300" %>
+                      <%= image_tag "no_image.jpg", size: "200x200" %>
                     <% end %>
                   <% end %>
                 </div>
@@ -48,18 +47,65 @@
                   <%= post.hotel_name %>
                 </div>
               </div>
-            </div>
           <% end %>
         </div>
       </div>
 
-      <% @ranking_comments.each do |post| %>
-      <%= post.hotel_name %>
-      <% end %>
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-12">
+            <h2 class="font-weight-bold">いいね数投稿ランキング</h2>
+          </div>
+        </div>
 
-      <% @ranking_likes.each do |post| %>
-      <%= post.hotel_name %>
-      <% end %>
+    　　<div class="row d-flex flex_wrap">
+    　　  　<% @ranking_likes.each do |post| %>
+              <div class="post-image-text card-effect mx-auto text-center">
+                <div class="post-image-box">
+                  <%= link_to post_path(post.id) do %>
+                    <% if post.post_images.first %>
+                      <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "200x200" %>
+                    <% else %>
+                      <%= image_tag "no_image.jpg", size: "200x200" %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="post-name my-2">
+                  <p class="badge badge-secondary">ホテル名</p>
+                  <%= post.hotel_name %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-12">
+            <h2 class="font-weight-bold">コメント数投稿ランキング</h2>
+          </div>
+        </div>
+
+    　　<div class="row d-flex flex_wrap">
+    　　    <% @ranking_comments.each do |post| %>
+              <div class="post-image-text card-effect mx-auto text-center">
+                <div class="post-image-box">
+                  <%= link_to post_path(post.id) do %>
+                    <% if post.post_images.first %>
+                      <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "200x200" %>
+                    <% else %>
+                      <%= image_tag "no_image.jpg", size: "200x200" %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="post-name my-2">
+                  <p class="badge badge-secondary">ホテル名</p>
+                  <%= post.hotel_name %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
 
       <div class="link-text text-left">
         <%= link_to posts_path, class: "btn bgleft btn-sm pl-3 pr-3" do %>

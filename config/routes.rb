@@ -43,9 +43,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'posts#index'
     resources :posts, only:[:index, :show, :edit, :update, :destroy]
-    resources :tags, only:[:index]
+    resources :tags, only:[:index, :edit]
     resources :users, only:[:index, :show, :edit, :update]
+      get "tags/destroy_all" => "tags/destroy_all"
   end
+
+
 
 # タグの検索で使用する
   get "search_tag" => "public/posts#search_tag"

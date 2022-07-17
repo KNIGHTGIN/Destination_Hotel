@@ -16,9 +16,9 @@
               <div class="col-md-2 offset-md-1">
                 <%= link_to post_path(post.id) do %>
                   <% if post.post_images.first %>
-                    <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "250x250" %>
+                    <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "200x200" %>
                   <% else %>
-                    <%= image_tag "no_image.jpg", size: "250x250" %>
+                    <%= image_tag "no_image.jpg", size: "200x200" %>
                   <% end %>
                 <% end %>
               </div>
