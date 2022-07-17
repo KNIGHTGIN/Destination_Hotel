@@ -46,7 +46,7 @@ class Public::UsersController < ApplicationController
 
   def comments
     @user = User.find(params[:id])
-    @posts =@user.comments
+    @posts = @user.commented_posts
   end
 
   private

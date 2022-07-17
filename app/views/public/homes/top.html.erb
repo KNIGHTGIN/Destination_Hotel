@@ -53,6 +53,14 @@
         </div>
       </div>
 
+      <% @ranking_comments.each do |post| %>
+      <%= post.hotel_name %>
+      <% end %>
+
+      <% @ranking_likes.each do |post| %>
+      <%= post.hotel_name %>
+      <% end %>
+
       <div class="link-text text-left">
         <%= link_to posts_path, class: "btn bgleft btn-sm pl-3 pr-3" do %>
           <h3 span><i class="fas fa-book-open"></i> 投稿一覧</h3>
