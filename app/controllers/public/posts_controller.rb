@@ -32,14 +32,12 @@ class Public::PostsController < ApplicationController
       #   list.tags.create(name: tag)
       # end
       #複数投稿画像のためそれぞれの情報が必要
-      @post.post_images.each do |post_image|
+      image_tags = @post.post_images.flat_map do |post_image|
         #それぞれの画像のデータをとりタグ付け
-        image_tags = Vision.get_image_data(post_image.image)
-        #image_tagsが揃うとtag_listへ保存
-        tag_list += image_tags
+        Vision.get_image_data(post_image.image)
       end
-      #uniqをつけタグのダブりをなくす
-      @post.save_tag(tag_list.uniq)
+
+      @post.save_tag(tag_list, image_tags)
 
       flash[:notice] = "投稿を保存しました"
       redirect_to posts_path
@@ -63,13 +61,11 @@ class Public::PostsController < ApplicationController
     end
     tag_list=params[:post][:name].split(',')
     if @post.update(post_params)
-      @post.post_images.each do |post_image|
+      image_tags = @post.post_images.flat_map do |post_image|
         #それぞれの画像のデータをとりタグ付け
-        image_tags = Vision.get_image_data(post_image.image)
-        #image_tagsが揃うとtag_listへ保存
-        tag_list += image_tags
+        Vision.get_image_data(post_image.image)
       end
-      @post.save_tag(tag_list)
+      @post.save_tag(tag_list, image_tags)
       flash[:notice] = "投稿を更新しました"
       redirect_to post_path(@post.id)
     else

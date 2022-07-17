@@ -9,24 +9,18 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
 
-  def save_tag(post_tags)
-  # タグが存在していれば、タグの名前を配列として全て取得
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    # 現在取得したタグから送られてきたタグを除いてoldtagとする
-    old_tags = current_tags - post_tags
-    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
-    new_tags = post_tags - current_tags
-
-    # 古いタグを消す
-    old_tags.each do |old_tag|
-      self.tags.delete　(Tag.find_by(name: old_tag))
+  def save_tag(post_tags,image_tags)
+    # 2. image_tags から Tag.find_or_create_by するときに AI でた具づけされたとフラグを立てる
+    new_tags = image_tags.map do |new_tag|
+      Tag.create_with(from_ai: true).find_or_create_by(name: new_tag)
     end
-
-    # 新しいタグを保存
-    new_tags.each do |new_tag|
-      add_tag = Tag.find_or_create_by(name: new_tag)
-      self.tags << add_tag
-   end
+    # 1. 現在のタグの一覧から AI でタグづけされたものを除外する
+    manualed_tags = post_tags.map do |post_tag|
+      tag = Tag.find_or_create_by(name: post_tag)
+      tag unless tag.from_ai
+    end.compact
+    # 3. self.tag = 1 で残ったタグ + 2 のタグ
+    self.tags = (manualed_tags + new_tags).uniq { |tag| tag.name }
   end
 
   def self.looks(search, word)
