@@ -13,6 +13,7 @@ import "skippr.min";
 import "script.js";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
+import "./raty.js"
 
 window.$ = window.jQuery = require('jquery');
 

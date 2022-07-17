@@ -4,7 +4,7 @@ class Public::LikesController < ApplicationController
 
   def index
    @like = Like.all
-   @posts = Post.find(params[:post_id])
+   @post = Post.find(params[:post_id])
   end
 
   def create
