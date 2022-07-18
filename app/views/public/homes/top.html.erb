@@ -115,3 +115,15 @@
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="link-text text-left">
+      <% if current_user = admin_signed_in? %>
+        <%= link_to admin_posts_path, class: "btn bgleft btn-sm pl-3 pr-3" do %>
+          <h3 span><i class="fas fa-book-open"></i> 投稿一覧に戻る(管理者はこちら)</h3>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
