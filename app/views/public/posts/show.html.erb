@@ -24,11 +24,10 @@
             <% @post_tags.each do |tag| %>
               <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
             <% end %></h4>
-        </div>
-      </div>
 
-      <td>
-        <div id="star-rate<%= @post.id%>"></td>
+          <td>
+            <h4 class>レビュー評価</h4>
+            <div id="star-rate<%= @post.id%>"></div>
           <script>
             $('#star-rate<%= @post.id %>').empty();
             $('#star-rate<%= @post.id%>').raty({
@@ -40,13 +39,12 @@
               score: <%= @post.star %>,
              });
           </script>
-      </td>
+          </td>
 
-      <div class="form-group row">
-        <div class="col-5 offset-2">
           <div id='post_like_js<%=@post.id %>'>
             <%= render "public/likes/like", post: @post %>
           </div>
+
         </div>
       </div>
 

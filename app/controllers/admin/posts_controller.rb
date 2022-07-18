@@ -24,13 +24,23 @@ class Admin::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    if params[:post][:post_image_id]
+      params[:post][:post_image_id].each do |post_image_id|
+        image = @post.post_images.find(post_image_id)
+        image.destroy
+      end
+    end
     tag_list=params[:post][:name].split(',')
     if @post.update(post_params)
-      @post.save_tag(tag_list)
-      flash[:notice] = "更新しました"
+      image_tags = @post.post_images.flat_map do |post_image|
+        #それぞれの画像のデータをとりタグ付け
+        Vision.get_image_data(post_image.image)
+      end
+      @post.save_tag(tag_list, image_tags)
+      flash[:notice] = "投稿を更新しました"
       redirect_to admin_post_path(@post.id)
     else
-      render "edit"
+      render:edit
     end
   end
 
@@ -51,7 +61,7 @@ class Admin::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, :body, post_images_images: [])
+    params.require(:post).permit(:hotel_name, :text, :user_id, :tag_id, :name, :body, :star, :list, post_images_images: [])
   end
 
 end
