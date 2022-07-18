@@ -8,13 +8,3 @@
   <% end %>
   <%= f.submit "削除" %>
 <% end %>
-
-
-
-<div class="row">
-  <div class="col-3 text-left">
-　  <%= link_to admin_tag_path, method: :delete, class: "btn bgleft btn btn-danger",data: {confirm: "本当に削除しますか？" }  do %>
-      <span><i class="fas fa-eraser"></i> 削除する</span>
-    <% end %>
-　</div>
-</div>
