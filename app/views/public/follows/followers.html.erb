@@ -2,7 +2,7 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-12'>
-      <h2>Follower Users</h2>
+      <h2><%= @user.name %>さんのFollower Users</h2>
       <table class='table table-bordereless'>
         <thead>
           <tr>
@@ -17,10 +17,10 @@
                 <%= link_to follower.name, user_path(follower.id) %>
               </td>
               <td>
-                <p>フォロー数：<%= follower.followings.count %></p>
+                <p>フォロー数：<%= link_to follower.followings.count, user_followings_path(follower.id) %></p>
               </td>
               <td>
-                <p>フォロワー数：<%= follower.followers.count %></p>
+                <p>フォロワー数：<%= link_to follower.followers.count, user_followers_path(follower.id) %></p>
               </td>
             </tr>
           </tbody>

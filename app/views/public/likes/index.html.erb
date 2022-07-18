@@ -1,4 +1,17 @@
-<h2 class="font-weight-bold">いいねしたユーザー</h2>
-  <% @post.liked_users.each do |user| %>
-    <li><%= user.name %></li>
-  <% end %>
+<div class="p-3 mb-2 bg-light">
+  <div class="container">
+
+    <div class="row my-3">
+      <div class="col-lg-4 mt-3">
+        <h2 class="font-weight-bold">いいねしたユーザー</h2>
+      </div>
+    </div>
+
+    <% @post.liked_users.each do |user| %>
+      <table class="table table-borderless">
+      <tr>
+        <li><%= link_to user.name, user_path(user.id) %></li>
+      </tr>
+    <% end %>
+  </div>
+</div>

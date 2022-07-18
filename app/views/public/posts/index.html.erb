@@ -16,25 +16,25 @@
               <div class="col-md-2 offset-md-1">
                 <%= link_to post_path(post.id) do %>
                   <% if post.post_images.first %>
-                    <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "200x200" %>
+                    <%= attachment_image_tag post.post_images.first, :image, class:"img-thumbnail", size: "300x300" %>
                   <% else %>
-                    <%= image_tag "no_image.jpg", size: "200x200" %>
+                    <%= image_tag "no_image.jpg", size: "100x100" %>
                   <% end %>
                 <% end %>
               </div>
               <div class="col">
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-12">
                     ホテル名:<%= link_to post.hotel_name, post_path(post.id), class:"h4" %>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-3">
+                  <div class="col-6">
                     投稿者: <%= link_to post.user.name, user_path(post.user.id), class:"h4" %>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-10">
+                  <div class="col-12">
                     タグ:<%= post.tags.map(&:name).join(', ') %>
                       | 投稿日: <%= post.updated_at.strftime('%Y/%m/%d') %>
                       | いいね: <%= post.likes.count %>件

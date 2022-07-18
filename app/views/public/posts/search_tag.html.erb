@@ -44,7 +44,7 @@
     <%= paginate @posts %>
   </div>
 
-<% if admin_signed_in? %>
+<% if current_user = admin_signed_in? %>
     <%= link_to "投稿一覧に戻る", admin_posts_path %>
 <% end %>
 
