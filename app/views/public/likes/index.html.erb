@@ -9,9 +9,14 @@
 
     <% @post.liked_users.each do |user| %>
       <table class="table table-borderless">
-      <tr>
-        <li><%= link_to user.name, user_path(user.id) %></li>
-      </tr>
+        <tr>
+          <% if user == current_user %>
+            <li><%= link_to user.name, users_my_page_path %></li>
+          <% else %>
+            <li><%= link_to user.name, user_path(user.id) %></li>
+          <% end %>
+        </tr>
+      </table>
     <% end %>
   </div>
 </div>
