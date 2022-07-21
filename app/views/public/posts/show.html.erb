@@ -25,6 +25,7 @@
               <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
             <% end %></h4>
 
+          <!-- レビュー機能 -->
           <td>
             <h4 class>レビュー評価</h4>
             <div id="star-rate<%= @post.id%>"></div>
@@ -41,6 +42,7 @@
           </script>
           </td>
 
+          <!-- いいね機能 -->
           <div id='post_like_js<%=@post.id %>'>
             <%= render "public/likes/like", post: @post %>
           </div>
@@ -48,6 +50,7 @@
         </div>
       </div>
 
+      <!-- コメント機能 -->
       <span id ="comment_js">
         <%= render 'public/comments/comment', post: @post, comment: @comment, comments: @comments %>
       </span>

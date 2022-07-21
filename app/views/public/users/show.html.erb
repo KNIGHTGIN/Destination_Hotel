@@ -4,6 +4,7 @@
     <div class="row my-3">
       <div class="col-lg-4 mt-3">
         <h2 class="font-weight-bold"><%= @user.name %>さんの詳細</h2>
+        <!-- フォロー機能 -->
         <div id='follow_button_js'>
           <%= render "public/follows/follow_button", user: @user %>
         </div>
