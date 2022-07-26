@@ -5,6 +5,7 @@
 /* 高さを指定することにより画像が表示される */
 #box{
   height: 600px;
+  position: relative;
 }
 .image1 {
   background-image: url(image1.jpg);
