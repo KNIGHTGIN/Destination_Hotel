@@ -29,7 +29,7 @@
 ### 主な利用シーン
 ホテル選び、旅行先選び、次回の宿泊先候補決め
 
-## 設計書
+## 設計書（修正予定）
 ・WBS:
 https://docs.google.com/spreadsheets/d/1CXqJxxKMG6LL66oOdxn-Tdmyahz_l2ON5EvFfhXJkfk/edit#gid=1773513600
 
