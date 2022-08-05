@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       resource :comments, only:[:create]
     end
     resources :comments, only:[:destroy]
+    resources :maps, only: [:index]
   end
 
   namespace :admin do
