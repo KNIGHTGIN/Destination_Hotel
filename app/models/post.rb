@@ -9,6 +9,9 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   def save_tag(post_tags,image_tags)
     # 2. image_tags から Tag.find_or_create_by するときに AI でた具づけされたとフラグを立てる
     new_tags = image_tags.map do |new_tag|
