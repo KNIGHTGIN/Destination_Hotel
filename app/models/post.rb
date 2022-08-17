@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode, if: :address_changed? #googlemap
 
   def save_tag(post_tags,image_tags)
     # 2. image_tags から Tag.find_or_create_by するときに AI でた具づけされたとフラグを立てる

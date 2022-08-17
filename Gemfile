@@ -69,4 +69,4 @@ gem 'dotenv-rails'
   gem 'mysql2', '>=0.5.3'
 #end
 gem 'dotenv-rails'
-gem 'geocoder'
+gem 'geocoder' #googlemap
