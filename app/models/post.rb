@@ -26,6 +26,7 @@ class Post < ApplicationRecord
     self.tags = (manualed_tags + new_tags).uniq { |tag| tag.name }
   end
 
+  #　検索
   def self.looks(search, word)
     if search == "perfect_match"
       @post = Post.where("hotel_name LIKE?","#{word}")
