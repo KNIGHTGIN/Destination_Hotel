@@ -11,7 +11,8 @@ class Post < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed? #googlemap
-
+  
+  # タグ機能
   def save_tag(post_tags,image_tags)
     # 2. image_tags から Tag.find_or_create_by するときに AI でた具づけされたとフラグを立てる
     new_tags = image_tags.map do |new_tag|
