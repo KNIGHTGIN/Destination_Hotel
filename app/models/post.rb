@@ -8,7 +8,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
-
+ 
+  #経度・緯度
   geocoded_by :address
   after_validation :geocode, if: :address_changed? #googlemap
   
