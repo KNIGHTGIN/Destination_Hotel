@@ -29,7 +29,7 @@ class User < ApplicationRecord
     end
   end
 
-
+  # 検索機能
   def self.looks(search, word)
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
