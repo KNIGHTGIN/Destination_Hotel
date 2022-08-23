@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     resources :posts, only:[:index, :show, :edit, :update, :destroy]
     resources :tags, only:[:index, :edit]
     resources :users, only:[:index, :show, :edit, :update]
-      get "tags/destroy_all" => "tags/destroy_all"
+      get "tags/destroy_all" => "tags/destroy_all" # タグの削除
   end
 
 
