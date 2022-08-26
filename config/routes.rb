@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     patch "users/withdraw" => "users#withdraw"
     patch "users/my_page" => "users#update"
     resources :users, only:[:show] do
-      resources :follows, only:[:create, :destroy]
+      resources :follows, only:[:create, :destroy] #フォロー機能
       get 'followings' => 'follows#following', as: 'followings'
       get 'followers' => 'follows#followers', as: 'followers'
       member do #一覧表示
