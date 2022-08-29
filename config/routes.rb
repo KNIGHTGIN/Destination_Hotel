@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-    get "users/my_page" => "users#my_page"
+    get "users/my_page" => "users#my_page" #ユーザーページ
     get "users/unsubscribe" => "users#unsubscribe"
     get "users/my_page/edit" => "users#edit"
     patch "users/withdraw" => "users#withdraw"
