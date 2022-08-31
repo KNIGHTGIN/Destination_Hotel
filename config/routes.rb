@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :likes, only:[:create, :destroy, :index] #いいね機能
-      resource :comments, only:[:create]
+      resource :comments, only:[:create] #コメント機能
     end
     resources :comments, only:[:destroy]
     #googlamap
