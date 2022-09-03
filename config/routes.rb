@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root to: "public/homes#top" #topページ
   get "about" => 'public/homes#about' #aboutページ
   devise_scope :user do
-    post '/users/guest_sign_in', to: 'public/sessions#guest_sign_in' #ゲストログイン
+    post '/users/guest_sign_in', to: 'public/sessions#guest_sign_in' #ゲストログイン機能
   end
 
 
