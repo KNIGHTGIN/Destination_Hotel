@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get "users/my_page" => "users#my_page" #ユーザーページ
     get "users/unsubscribe" => "users#unsubscribe" #退会機能
-    get "users/my_page/edit" => "users#edit" #マイページ編集機能
+    get "users/my_page/edit" => "users#edit" #マイページの編集機能
     patch "users/withdraw" => "users#withdraw"
     patch "users/my_page" => "users#update"
     resources :users, only:[:show] do
