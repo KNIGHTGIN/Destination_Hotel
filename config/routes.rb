@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :users, only:[:show] do
       resources :follows, only:[:create, :destroy] #フォロー機能
       get 'followings' => 'follows#following', as: 'followings'#フォロー
-      get 'followers' => 'follows#followers', as: 'followers'
+      get 'followers' => 'follows#followers', as: 'followers'#フォロワー
       member do #一覧表示
         get 'likes'
         get 'hotels'
