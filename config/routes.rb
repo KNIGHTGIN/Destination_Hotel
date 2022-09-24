@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     resources :maps, only: [:index]
   end
 
-  namespace :admin do #管理者ページ
+  namespace :admin do #管理者機能
     root to: 'posts#index'
     resources :posts, only:[:index, :show, :edit, :update, :destroy]
     resources :tags, only:[:index, :edit]
